@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import MyContext from './myContext';
 
 function Provider({ children }) {
+  const [isHiddenSearchBar, setVisibleSearchBar] = useState(true);
   const stateContext = {
+    isHiddenSearchBar,
+    setVisibleSearchBar,
   };
 
   return (

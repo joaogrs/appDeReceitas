@@ -1,10 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import Header from '../Components/Header';
 
-function Login() {
+function Login(props) {
+  const { history } = props;
   return (
-    <h1>Hello</h1>
+    <section>
+      <h1>Hello</h1>
+      <Header history={ history } />
+    </section>
   );
 }
 
 export default Login;
-// oi
+Login.propTypes = {
+  history: PropTypes.shape({ push: PropTypes.func }).isRequired,
+};
