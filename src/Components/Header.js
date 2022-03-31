@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import myContext from '../Context/myContext';
 import SearchBar from './SearchBar';
@@ -35,9 +34,6 @@ const Header = (props) => {
             src={ searchIcon }
             alt="search"
           />) : null}
-        <Link to="/foods/100">
-          <button type="button">Teste</button>
-        </Link>
       </div>
       <SearchBar { ...props } />
     </section>
