@@ -5,11 +5,14 @@ import MyContext from './myContext';
 function Provider({ children }) {
   const [isHiddenSearchBar, setVisibleSearchBar] = useState(false);
   const [showSearchInput, setShowSearchInput] = useState(true);
+  const [apiData, setApiData] = useState([]);
   const stateContext = {
     isHiddenSearchBar,
     setVisibleSearchBar,
     showSearchInput,
     setShowSearchInput,
+    apiData,
+    setApiData,
   };
 
   return (
@@ -24,4 +27,3 @@ Provider.propTypes = {
 };
 
 export default Provider;
-// oi

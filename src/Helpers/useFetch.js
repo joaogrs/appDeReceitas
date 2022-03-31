@@ -1,6 +1,30 @@
 import { useEffect, useState } from 'react';
 
-const useFetch = (url) => {
+export const endpointDrink = (searchTerm, searchType) => {
+  if (searchType === 'name') {
+    return `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchTerm}`;
+  }
+  if (searchType === 'ingredient') {
+    return `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${searchTerm}`;
+  }
+  if (searchType === 'firstLetter') {
+    return `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${searchTerm}`;
+  }
+};
+
+export const endpointMeal = (searchTerm, searchType) => {
+  if (searchType === 'name') {
+    return `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`;
+  }
+  if (searchType === 'ingredient') {
+    return `https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchTerm}`;
+  }
+  if (searchType === 'firstLetter') {
+    return `https://www.themealdb.com/api/json/v1/1/search.php?f=${searchTerm}`;
+  }
+};
+
+export const useFetch = (url) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -23,6 +47,12 @@ const useFetch = (url) => {
   return { data, error, isLoading };
 };
 
-export default useFetch;
-
-// oi
+export const fetchApi = async (url) => {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return error.message;
+  }
+};
