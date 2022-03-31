@@ -1,8 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import myContext from '../Context/myContext';
 import Header from '../Components/Header';
+import Footer from '../Components/Footer';
 
-function FavoritesRecipes(props) {
+function Profile() {
   const { setShowSearchInput } = useContext(myContext);
   useEffect(() => {
     console.log('didMount');
@@ -10,10 +11,10 @@ function FavoritesRecipes(props) {
   }, []);
   return (
     <section>
-      <h1>Favorites Recipes</h1>
-      <Header { ...props } pageTitle="Favorite Recipes" />
-    </section>
-  );
+      <h1>Profile </h1>
+      <Header pageTitle="Profile" />
+      <Footer />
+    </section>);
 }
 
-export default FavoritesRecipes;
+export default Profile;

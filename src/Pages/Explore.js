@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import Footer from '../Components/Footer';
+import myContext from '../Context/myContext';
+import Header from '../Components/Header';
 
-function Explore() {
+function Explore(props) {
+  const { setShowSearchInput } = useContext(myContext);
+  useEffect(() => {
+    console.log('didMount');
+    setShowSearchInput((prevState) => !prevState);
+  }, []);
   return (
-    <>
-      <Footer />
+    <section>
       <h1>Explore</h1>
-    </>
+      <Header { ...props } pageTitle="Explore" />
+      <Footer />
+    </section>
   );
 }
 

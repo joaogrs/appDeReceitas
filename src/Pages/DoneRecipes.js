@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import myContext from '../Context/myContext';
+import Header from '../Components/Header';
 
-function DoneRecipes() {
+function DoneRecipes(props) {
+  const { setShowSearchInput } = useContext(myContext);
+  useEffect(() => {
+    console.log('didMount');
+    setShowSearchInput((prevState) => !prevState);
+  }, []);
   return (
-    <h1>Done Recipes</h1>
+    <section>
+      <h1>Done Recipes</h1>
+      <Header { ...props } pageTitle="Done Recipes" />
+    </section>
   );
 }
 
