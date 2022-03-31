@@ -79,6 +79,3 @@ Login.propTypes = {
 };
 
 export default Login;
-Login.propTypes = {
-  history: PropTypes.shape({ push: PropTypes.func }).isRequired,
-};
