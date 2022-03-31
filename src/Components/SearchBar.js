@@ -1,18 +1,55 @@
 import React, { useContext, useState } from 'react';
+import PropTypes from 'prop-types';
 import myContext from '../Context/myContext';
+import { endpointDrink, endpointMeal, fetchApi } from '../Helpers/useFetch';
+import { alertOneLetter, alertRecipesNotFound } from '../Helpers/alertFunctions';
 
-const SearchBar = () => {
+const SearchBar = (props) => {
+  const { history } = props;
+  const { history: { location } } = props;
   const [stateSearchBar, setStateSearchBar] = useState({ searchOption: '',
     searchInput: '' });
-  const { isHiddenSearchBar } = useContext(myContext);
+
+  const { isHiddenSearchBar, setApiData } = useContext(myContext);
+
   const handleInputSearch = ({ target: { name, value } }) => {
-    console.log('name', name, 'value', value);
-    // setStateSearchBar((prevState) => ({ ...prevState, [name]: value }));
     setStateSearchBar({ ...stateSearchBar, [name]: value });
   };
-  const handleBtnSearch = () => {
-    console.log('Clicou');
+
+  const oneRecipeFound = ({ meals, drinks }) => {
+    if (meals && meals.length === 1) {
+      history.push(`/foods/${meals[0].idMeal}`);
+    }
+    if (drinks && drinks.length === 1) {
+      history.push(`/drinks/${drinks[0].idDrink}`);
+    }
   };
+
+  const verifyPathname = () => {
+    const { searchOption, searchInput } = stateSearchBar;
+    if (location.pathname === '/foods') {
+      return endpointMeal(searchInput, searchOption);
+    }
+    if (location.pathname === '/drinks') {
+      return endpointDrink(searchInput, searchOption);
+    }
+  };
+
+  const handleBtnSearch = async () => {
+    const { searchOption, searchInput } = stateSearchBar;
+
+    const endpointCorrect = verifyPathname();
+    alertOneLetter(searchOption, searchInput);
+
+    const dataApi = await fetchApi(endpointCorrect);
+
+    oneRecipeFound(dataApi);
+
+    alertRecipesNotFound(dataApi);
+
+    setApiData(dataApi);
+  };
+
   return (
     <div>
       { isHiddenSearchBar ? (
@@ -58,6 +95,13 @@ const SearchBar = () => {
         </form>) : null}
     </div>
   );
+};
+
+SearchBar.propTypes = {
+  history: PropTypes
+    .shape({ location: PropTypes
+      .shape({ pathname: PropTypes.string }),
+    push: PropTypes.func }).isRequired,
 };
 
 export default SearchBar;

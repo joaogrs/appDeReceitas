@@ -7,7 +7,6 @@ import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 
 const Header = (props) => {
-  console.log(props);
   const { pageTitle } = props;
   const { setVisibleSearchBar, showSearchInput } = useContext(myContext);
   const btnShowSearchBar = () => {
@@ -40,7 +39,7 @@ const Header = (props) => {
           <button type="button">Teste</button>
         </Link>
       </div>
-      <SearchBar />
+      <SearchBar { ...props } />
     </section>
   );
 };
