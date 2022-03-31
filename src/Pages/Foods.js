@@ -1,8 +1,12 @@
 import React from 'react';
+import Header from '../Components/Header';
 
-function Foods() {
+function Foods(props) {
   return (
-    <h1>Foods</h1>
+    <section>
+      <h1>Foods</h1>
+      <Header { ...props } pageTitle="Foods" />
+    </section>
   );
 }
 

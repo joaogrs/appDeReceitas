@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import myContext from '../Context/myContext';
+import Header from '../Components/Header';
 
-function Explore() {
+function Explore(props) {
+  const { setShowSearchInput } = useContext(myContext);
+  useEffect(() => {
+    console.log('didMount');
+    setShowSearchInput((prevState) => !prevState);
+  }, []);
   return (
-    <h1>Explore</h1>
+    <section>
+      <h1>Explore</h1>
+      <Header { ...props } pageTitle="Explore" />
+    </section>
   );
 }
 

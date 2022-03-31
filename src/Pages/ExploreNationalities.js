@@ -1,8 +1,12 @@
 import React from 'react';
+import Header from '../Components/Header';
 
-function ExploreNationalities() {
+function ExploreNationalities(props) {
   return (
-    <h1>Explore Nationalities</h1>
+    <section>
+      <h1>Explore Nationalities</h1>
+      <Header { ...props } pageTitle="Explore Nationalities" />
+    </section>
   );
 }
 
