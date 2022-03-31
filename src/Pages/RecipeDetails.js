@@ -2,7 +2,9 @@ import React from 'react';
 
 function RecipeDetails() {
   return (
-    <h1>Recipes Details</h1>
+    <section>
+      <h1>Recipes Details</h1>
+    </section>
   );
 }
 

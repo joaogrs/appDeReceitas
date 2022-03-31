@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Login from './Pages/Login';
-import Perfil from './Pages/Perfil';
+import Profile from './Pages/Profile';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Provider from './Context/myProvider';
@@ -26,27 +26,57 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={ Login } />
-          <Route path="/profile" component={ Perfil } />
-          <Route path="/foods" component={ Foods } />
-          <Route path="/drinks" component={ Drinks } />
-          <Route path="/foods/:id" component={ RecipeDetails } />
-          <Route path="/drinks/:id" component={ DrinkDetails } />
-          <Route path="/foods/:id/in-progress" component={ RecipeInProgress } />
-          <Route path="/drinks/:id/in-progress" component={ DrinkInProgress } />
+          <Route exact path="/profile" component={ Profile } />
+          <Route exact path="/foods" component={ Foods } />
+          <Route exact path="/drinks" component={ Drinks } />
+          <Route
+            exact
+            path="/foods/:id"
+            component={ (props) => <RecipeDetails { ...props } /> }
+          />
+          <Route
+            exact
+            path="/drinks/:id"
+            component={ (props) => <DrinkDetails { ...props } /> }
+          />
+          <Route
+            exact
+            path="/foods/:id/in-progress"
+            component={ RecipeInProgress }
+          />
+          <Route
+            exact
+            path="/drinks/:id/in-progress"
+            component={ DrinkInProgress }
+          />
           <Route exact path="/explore" component={ Explore } />
           <Route exact path="/explore/foods" component={ ExploreRecipe } />
           <Route exact path="/explore/drinks" component={ ExploreDrink } />
           <Route
+            exact
             path="/explore/foods/ingredients"
             component={ ExploreRecipeIngredients }
           />
           <Route
+            exact
             path="/explore/drinks/ingredients"
             component={ ExploreDrinkIngredients }
           />
-          <Route path="/explore/foods/nationalities" component={ ExploreNationalities } />
-          <Route path="/done-recipes" component={ DoneRecipes } />
-          <Route path="/favorite-recipes" component={ FavoritesRecipes } />
+          <Route
+            exact
+            path="/explore/foods/nationalities"
+            component={ ExploreNationalities }
+          />
+          <Route
+            exact
+            path="/done-recipes"
+            component={ DoneRecipes }
+          />
+          <Route
+            exact
+            path="/favorite-recipes"
+            component={ FavoritesRecipes }
+          />
         </Switch>
       </BrowserRouter>
     </Provider>
