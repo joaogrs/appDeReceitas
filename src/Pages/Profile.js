@@ -3,7 +3,7 @@ import myContext from '../Context/myContext';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 
-function Profile() {
+function Profile(props) {
   const { setShowSearchInput } = useContext(myContext);
   useEffect(() => {
     console.log('didMount');
@@ -12,7 +12,7 @@ function Profile() {
   return (
     <section>
       <h1>Profile </h1>
-      <Header pageTitle="Profile" />
+      <Header { ...props } pageTitle="Profile" />
       <Footer />
     </section>);
 }
