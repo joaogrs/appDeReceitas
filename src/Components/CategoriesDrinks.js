@@ -5,6 +5,8 @@ import { fetchApi } from '../Helpers/useFetch';
 const CategoriesDrinks = () => {
   const { categoriesDrinks, setApiData } = useContext(myContext);
   const [cardCategoriesDrinks, setCardCategoriesDrinks] = useState([]);
+  const [filterClickDrink, setFilterClickDrink] = useState(false);
+  const [lastDrinkCategoryName, setLastDrinkCategoryName] = useState('');
   const defineFiveCategories = () => {
     const maxLength = 4;
     if (categoriesDrinks.drinks) {
@@ -18,9 +20,33 @@ const CategoriesDrinks = () => {
   };
 
   const handleClickCategorieDrinks = async ({ strCategory }) => {
-    const urlCategory = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${strCategory}`;
-    const response = await fetchApi(urlCategory);
-    setApiData(response);
+    if (filterClickDrink === false) {
+      const urlCategory = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${strCategory}`;
+      const response = await fetchApi(urlCategory);
+      setApiData(response);
+      setFilterClickDrink(true);
+      setLastDrinkCategoryName(strCategory);
+    }
+    if (filterClickDrink && strCategory === lastDrinkCategoryName) {
+      const urlInitial = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
+      const foodsInitial = await fetchApi(urlInitial);
+      setApiData(foodsInitial);
+      setFilterClickDrink(true);
+      setLastDrinkCategoryName('');
+    }
+    if (filterClickDrink && strCategory !== lastDrinkCategoryName) {
+      const urlCategory = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${strCategory}`;
+      const response = await fetchApi(urlCategory);
+      setApiData(response);
+      setFilterClickDrink(true);
+      setLastDrinkCategoryName(strCategory);
+    }
+  };
+
+  const handleClickAllCategoriesDrinks = async () => {
+    const urlInitial = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
+    const drinksInitial = await fetchApi(urlInitial);
+    setApiData(drinksInitial);
   };
 
   useEffect(() => { defineFiveCategories(); }, [categoriesDrinks]);
@@ -37,6 +63,13 @@ const CategoriesDrinks = () => {
           { element.strCategory }
         </button>
       ))}
+      <button
+        type="button"
+        data-testid="All-category-filter"
+        onClick={ () => handleClickAllCategoriesDrinks() }
+      >
+        All
+      </button>
     </div>);
 };
 
