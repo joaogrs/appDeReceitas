@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import myContext from '../Context/myContext';
+import { fetchApi } from '../Helpers/useFetch';
 
 const CategoriesDrinks = () => {
-  const { categoriesDrinks } = useContext(myContext);
+  const { categoriesDrinks, setApiData } = useContext(myContext);
   const [cardCategoriesDrinks, setCardCategoriesDrinks] = useState([]);
   const defineFiveCategories = () => {
     const maxLength = 4;
@@ -15,6 +16,13 @@ const CategoriesDrinks = () => {
       setCardCategoriesDrinks([...newArrCategories]);
     }
   };
+
+  const handleClickCategorieDrinks = async ({ strCategory }) => {
+    const urlCategory = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${strCategory}`;
+    const response = await fetchApi(urlCategory);
+    setApiData(response);
+  };
+
   useEffect(() => { defineFiveCategories(); }, [categoriesDrinks]);
   return (
     <div>
@@ -24,7 +32,7 @@ const CategoriesDrinks = () => {
           key={ index }
           data-testid={ `${element.strCategory}-category-filter` }
           type="button"
-          onClick={ () => {} }
+          onClick={ () => handleClickCategorieDrinks(element) }
         >
           { element.strCategory }
         </button>

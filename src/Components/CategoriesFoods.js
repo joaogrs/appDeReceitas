@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import myContext from '../Context/myContext';
+import { fetchApi } from '../Helpers/useFetch';
 
 const CategoriesFoods = () => {
-  const { categoriesFoods } = useContext(myContext);
+  const { categoriesFoods, setApiData } = useContext(myContext);
   const [cardCategories, setCardCategories] = useState([]);
   const defineFiveCategories = () => {
     const maxLength = 4;
@@ -15,6 +16,13 @@ const CategoriesFoods = () => {
       setCardCategories([...newArrCategories]);
     }
   };
+
+  const handleClickCategorieMeals = async ({ strCategory }) => {
+    const urlCategory = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${strCategory}`;
+    const response = await fetchApi(urlCategory);
+    setApiData(response);
+  };
+
   useEffect(() => { defineFiveCategories(); }, [categoriesFoods]);
   return (
     <div>
@@ -24,7 +32,7 @@ const CategoriesFoods = () => {
           key={ index }
           data-testid={ `${element.strCategory}-category-filter` }
           type="button"
-          onClick={ () => {} }
+          onClick={ () => handleClickCategorieMeals(element) }
         >
           { element.strCategory }
         </button>
