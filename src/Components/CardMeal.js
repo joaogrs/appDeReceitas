@@ -15,7 +15,6 @@ function CardMeal() {
         for (let i = 0; i <= maxLength; i += 1) {
           newArr[i] = apiData.meals[i];
         }
-        console.log('novo array:', newArr);
         setDataValue([...newArr]);
       } else { setDataValue([...apiData.meals]); }
       setVerifyDataValue(true);
