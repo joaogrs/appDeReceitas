@@ -1,6 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import myContext from '../Context/myContext';
 import Header from '../Components/Header';
+import ButtonsDoneRecipes from '../Components/ButtonsDoneRecipes';
+import CardDoneRecipes from '../Components/CardDoneRecipes';
 
 function DoneRecipes(props) {
   const { setShowSearchInput } = useContext(myContext);
@@ -10,8 +12,9 @@ function DoneRecipes(props) {
   }, []);
   return (
     <section>
-      <h1>Done Recipes</h1>
       <Header { ...props } pageTitle="Done Recipes" />
+      <ButtonsDoneRecipes />
+      <CardDoneRecipes />
     </section>
   );
 }

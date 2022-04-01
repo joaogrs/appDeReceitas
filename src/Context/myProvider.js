@@ -8,6 +8,8 @@ function Provider({ children }) {
   const [apiData, setApiData] = useState([]);
   const [categoriesFoods, setCategoriesFoods] = useState([]);
   const [categoriesDrinks, setCategoriesDrinks] = useState([]);
+  const [doneRecipes, setDoneRecipes] = useState([]);
+  const [doneRecipesFilter, setDoneRecipesFilter] = useState([]);
   const stateContext = {
     isHiddenSearchBar,
     setVisibleSearchBar,
@@ -19,6 +21,10 @@ function Provider({ children }) {
     setCategoriesFoods,
     categoriesDrinks,
     setCategoriesDrinks,
+    doneRecipes,
+    setDoneRecipes,
+    doneRecipesFilter,
+    setDoneRecipesFilter,
   };
 
   return (
