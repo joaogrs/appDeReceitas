@@ -1,11 +1,11 @@
 .main-card {
   display: flex;
-  flex-direction: row;
   flex-flow: wrap;
+  flex-direction: row;
   margin: auto;
   max-width: 340px;
-  overflow-y: scroll;
   max-height: 280px;
+  overflow-y: scroll;
 
 }
 
