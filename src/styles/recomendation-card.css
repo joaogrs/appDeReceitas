@@ -3,8 +3,8 @@
   flex-flow: wrap;
   flex-direction: row;
   margin: auto;
-  max-width: 340px;
   max-height: 280px;
+  max-width: 340px;
   overflow-y: scroll;
 
 }
