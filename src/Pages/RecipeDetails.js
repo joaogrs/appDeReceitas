@@ -12,7 +12,6 @@ function RecipeDetails({ match }) {
       const idFood = match.params.id;
       const endpoint = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idFood}`;
       const dataFood = await fetchApi(endpoint);
-      console.log(dataFood.meals);
       setDataOfDetails(...dataFood.meals);
     };
     setApiFood();
