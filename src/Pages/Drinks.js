@@ -14,7 +14,6 @@ function Drinks(props) {
       const endpointCategories = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
       const drinksInitial = await fetchApi(endpointInitial);
       const categoriesDrink = await fetchApi(endpointCategories);
-      console.log(categoriesDrink);
       setApiData(drinksInitial);
       setCategoriesDrinks(categoriesDrink);
     })();

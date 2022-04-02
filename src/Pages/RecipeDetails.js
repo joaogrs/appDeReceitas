@@ -1,20 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { fetchApi } from '../Helpers/useFetch';
+import Details from '../Components/Details';
 
-function RecipeDetails() {
+function RecipeDetails({ match }) {
+  const [dataOfDetails, setDataOfDetails] = useState([]);
+  const thisPathName = match.path;
+
+  useEffect(() => {
+    const setApiFood = async () => {
+      const idFood = match.params.id;
+      const endpoint = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idFood}`;
+      const dataFood = await fetchApi(endpoint);
+      console.log(dataFood.meals);
+      setDataOfDetails(...dataFood.meals);
+    };
+    setApiFood();
+  }, []);
+
   return (
-    <section data-testid="recipe-details">
-      <img data-testid="recipe-photo" alt="recipe-img" />
-      <h1 data-testid="recipe-title">titulo</h1>
-      <button type="button" data-testid="share-btn">compartilhar</button>
-      <button type="button" data-testid="favorite-btn">favoritar</button>
-      <p data-testid="recipe-category">categoria</p>
-      <p data-testid="$index-ingredient-name-and-measure">ingredients</p>
-      <p data-testid="instructions">intruções</p>
-      <a data-testid="video" href="https://www.youtube.com/watch?v=g-X_ACmw8GY">video</a>
-      <div data-testid="$index-recomendation-card">receitas recomendadas</div>
-      <button data-testid="start-recipe-btn" type="button">iniciar receita</button>
-    </section>
+    dataOfDetails
+    && (
+      <Details dataOfDetails={ dataOfDetails } path={ thisPathName } />
+    )
   );
 }
+
+RecipeDetails.propTypes = {
+  match: PropTypes.objectOf.isRequired,
+
+};
 
 export default RecipeDetails;
