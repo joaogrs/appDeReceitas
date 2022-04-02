@@ -1,23 +1,24 @@
-import React from 'react';
-// import React, { useContext, useEffect } from 'react';
+// import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import copy from 'clipboard-copy';
 import shareIcon from '../images/shareIcon.svg';
 // import getfromLocalStorage from '../Helpers/getFromLocalStorage';
-// import myContext from '../Context/myContext';
+import myContext from '../Context/myContext';
 
 const CardDoneRecipes = () => {
-  // const { setDoneRecipes,
-  // doneRecipesFilter, setDoneRecipesFilter } = useContext(myContext);
-  // id: 'id-da-receita',
-  // type: 'comida-ou-bebida',
-  // nationality: 'nacionalidade-da-receita-ou-texto-vazio',
-  // category: 'categoria-da-receita-ou-texto-vazio',
-  // alcoholicOrNot: 'alcoholic-ou-non-alcoholic-ou-texto-vazio',
-  // name: 'nome-da-receita',
-  // image: 'imagem-da-receita',
-  // doneDate: 'quando-a-receita-foi-concluida',
-  // tags: ['array-de-tags-da-receita-ou-array-vazio'],
+  const { setDoneRecipes,
+    doneRecipesFilter, setDoneRecipesFilter } = useContext(myContext);
+  const teste = [{ id: 'id-da-receita',
+    type: 'comida-ou-bebida',
+    nationality: 'nacionalidade-da-receita-ou-texto-vazio',
+    category: 'categoria-da-receita-ou-texto-vazio',
+    alcoholicOrNot: 'alcoholic-ou-non-alcoholic-ou-texto-vazio',
+    name: 'nome-da-receita',
+    image: 'imagem-da-receita',
+    doneDate: 'quando-a-receita-foi-concluida',
+    tags: ['array-de-tags-da-receita-ou-array-vazio'],
+  }];
   const copyLinkRecipe = async (id, type) => {
     // console.log('click copied');
     await copy(`http://localhost:3000/${type}/${id}`);
@@ -27,8 +28,8 @@ const CardDoneRecipes = () => {
     // console.log('didMount');
     // const doneRecipesLocalStorage = (getfromLocalStorage('doneRecipes'));
     // console.log(doneRecipesLocalStorage);
-    // setDoneRecipes([doneRecipesLocalStorage]);
-    // setDoneRecipesFilter([doneRecipesLocalStorage]);
+    setDoneRecipes([...teste]);
+    setDoneRecipesFilter([...teste]);
   }, []);
 
   return (
