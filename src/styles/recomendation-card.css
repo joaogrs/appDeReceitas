@@ -1,15 +1,15 @@
 .main-card {
   display: flex;
   flex-direction: row;
-  overflow-y: scroll;
-  max-width: 340px;
+  flex-flow: wrap;
   margin: auto;
-  flex-wrap: wrap;
+  max-width: 340px;
+  overflow-y: scroll;
   max-height: 280px;
 
 }
 
 .img-recomendation {
-    width: 140px;
-    height: 250px;
+  height: 250px;
+  width: 140px;
 }
