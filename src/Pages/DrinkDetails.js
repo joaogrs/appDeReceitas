@@ -1,11 +1,63 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import PropTypes from 'prop-types';
+import { fetchApi } from '../Helpers/useFetch';
+import Details from '../Components/Details';
+import myContext from '../Context/myContext';
+import { getfavoriteFoodLocalStore } from '../Helpers/favoriteLocalStore';
 
-function DrinkDetails() {
+function DrinkDetails({ match, history }) {
+  const { setdetailRecipeInfo, detailRecipeInfo,
+    setIsFavoriteBtn } = useContext(myContext);
+  const [dataDrinkDetails, setDataDrinkDetails] = useState([]);
+  const thisPathName = match.path;
+
+  useEffect(() => {
+    const setApiDrink = async () => {
+      const idDrink = match.params.id;
+      const endpoint = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`;
+      const dataDrink = await fetchApi(endpoint);
+      setDataDrinkDetails(...dataDrink.drinks);
+      setdetailRecipeInfo([...dataDrink.drinks]);
+    };
+    setApiDrink();
+  }, []);
+
+  useEffect(() => {
+    const functeste = () => {
+      let teste2;
+      const favoritesLocalStore = getfavoriteFoodLocalStore();
+      if (detailRecipeInfo.length > 0) {
+        if (detailRecipeInfo[0].idDrink) {
+          teste2 = favoritesLocalStore
+            .some((item) => item.id === detailRecipeInfo[0].idDrink);
+          // setIsFavoriteBtn((prevState) => (!prevState));
+        } else if (detailRecipeInfo[0].idMeal) {
+          teste2 = favoritesLocalStore
+            .some((item) => item.id === detailRecipeInfo[0].idMeal);
+          // setIsFavoriteBtn((prevState) => (!prevState));
+        }
+        setIsFavoriteBtn(teste2);
+      }
+    };
+    functeste();
+  }, [detailRecipeInfo]);
+
   return (
-    <section>
-      <h1>Drink Details</h1>
-    </section>
+    dataDrinkDetails
+    && (
+      <Details
+        dataOfDetails={ dataDrinkDetails }
+        path={ thisPathName }
+        history={ history }
+      />
+    )
   );
 }
+
+DrinkDetails.propTypes = {
+  match: PropTypes.objectOf.isRequired,
+  history: PropTypes.shape({}).isRequired,
+
+};
 
 export default DrinkDetails;
