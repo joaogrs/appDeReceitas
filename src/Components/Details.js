@@ -1,33 +1,11 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import myContext from '../Context/myContext';
+// import myContext from '../Context/myContext';
 import IngredientsList from './IngredientsList';
 import ShareButtonDetailsRecipes from './ShareButtonDetailsRecipes';
 import FavoriteButtonRecipes from './FavoriteButtonRecipes';
 
 function Details({ dataOfDetails, path }) {
-  const { setdetailRecipeInfo } = useContext(myContext);
-
-  useEffect(() => {
-    setdetailRecipeInfo([dataOfDetails]);
-    // const functeste = () => {
-    //   let teste2;
-    //   const favoritesLocalStore = getfavoriteFoodLocalStore();
-    //   console.log('local storage', favoritesLocalStore);
-    //   if (detailRecipeInfo[0].idDrink) {
-    //     teste2 = favoritesLocalStore
-    //       .some((item) => item.id === detailRecipeInfo[0].idDrink);
-    //     // setIsFavoriteBtn((prevState) => (!prevState));
-    //   } else if (detailRecipeInfo[0].idMeal) {
-    //     teste2 = favoritesLocalStore
-    //       .some((item) => item.id === detailRecipeInfo[0].idMeal);
-    //     // setIsFavoriteBtn((prevState) => (!prevState));
-    //   }
-    //   setIsFavoriteBtn(teste2);
-    // };
-    // functeste();
-  }, [dataOfDetails]);
-
   return (
     path.includes('drinks') ? (
       <section data-testid="recipe-details">
