@@ -1,36 +1,32 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import copy from 'clipboard-copy';
+import myContext from '../Context/myContext';
 import IngredientsList from './IngredientsList';
-import shareIcon from '../images/shareIcon.svg';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import ShareButtonDetailsRecipes from './ShareButtonDetailsRecipes';
+import FavoriteButtonRecipes from './FavoriteButtonRecipes';
 
 function Details({ dataOfDetails, path }) {
-  const [btnShareshow, setBtnShareShow] = useState(true);
-  // const LINK = 'Link copied!';
-  const TWO_SECONDS = 2000;
-  const clickShareRecipe = async (object) => {
-    if (Object.keys(object)[0] === 'idMeal') {
-      await copy(`http://localhost:3000/foods/${object.idMeal}`);
-      // global.alert(LINK);
-      setBtnShareShow(false);
-      setTimeout(() => {
-        setBtnShareShow(true);
-      }, TWO_SECONDS);
-    }
-    if (Object.keys(object)[0] === 'idDrink') {
-      await copy(`http://localhost:3000/drinks/${object.idDrink}`);
-      // global.alert(LINK);
-      setBtnShareShow(false);
-      setTimeout(() => {
-        setBtnShareShow(true);
-      }, TWO_SECONDS);
-    }
-  };
+  const { setdetailRecipeInfo } = useContext(myContext);
 
-  const clickFavoriteRecipe = () => {
-    console.log('Clicou Favoritar');
-  };
+  useEffect(() => {
+    setdetailRecipeInfo([dataOfDetails]);
+    // const functeste = () => {
+    //   let teste2;
+    //   const favoritesLocalStore = getfavoriteFoodLocalStore();
+    //   console.log('local storage', favoritesLocalStore);
+    //   if (detailRecipeInfo[0].idDrink) {
+    //     teste2 = favoritesLocalStore
+    //       .some((item) => item.id === detailRecipeInfo[0].idDrink);
+    //     // setIsFavoriteBtn((prevState) => (!prevState));
+    //   } else if (detailRecipeInfo[0].idMeal) {
+    //     teste2 = favoritesLocalStore
+    //       .some((item) => item.id === detailRecipeInfo[0].idMeal);
+    //     // setIsFavoriteBtn((prevState) => (!prevState));
+    //   }
+    //   setIsFavoriteBtn(teste2);
+    // };
+    // functeste();
+  }, [dataOfDetails]);
 
   return (
     path.includes('drinks') ? (
@@ -41,22 +37,8 @@ function Details({ dataOfDetails, path }) {
           alt="recipe-img"
         />
         <h1 data-testid="recipe-title">{dataOfDetails.strDrink}</h1>
-        {btnShareshow ? (
-          <input
-            type="image"
-            onClick={ () => { clickShareRecipe(dataOfDetails); } }
-            data-testid="share-btn"
-            src={ shareIcon }
-            alt="compartilhar"
-          />) : (<button type="button">Link copied!</button>
-        )}
-        <input
-          type="image"
-          data-testid="favorite-btn"
-          alt="favoritar"
-          src={ whiteHeartIcon }
-          onClick={ () => { clickFavoriteRecipe(); } }
-        />
+        <ShareButtonDetailsRecipes />
+        <FavoriteButtonRecipes />
         <p data-testid="recipe-category">{dataOfDetails.strAlcoholic}</p>
         <IngredientsList dataDetails={ dataOfDetails } />
         <div>
@@ -74,22 +56,8 @@ function Details({ dataOfDetails, path }) {
           alt="recipe-img"
         />
         <h1 data-testid="recipe-title">{dataOfDetails.strMeal}</h1>
-        { btnShareshow ? (
-          <input
-            type="image"
-            onClick={ () => { clickShareRecipe(dataOfDetails); } }
-            data-testid="share-btn"
-            src={ shareIcon }
-            alt="compartilhar"
-          />) : (<button type="button">Link copied!</button>
-        )}
-        <input
-          type="image"
-          data-testid="favorite-btn"
-          alt="favoritar"
-          src={ whiteHeartIcon }
-          onClick={ () => { clickFavoriteRecipe(); } }
-        />
+        <ShareButtonDetailsRecipes />
+        <FavoriteButtonRecipes />
         <h3 data-testid="recipe-category">{dataOfDetails.strCategory}</h3>
         <IngredientsList dataDetails={ dataOfDetails } />
         <div>
