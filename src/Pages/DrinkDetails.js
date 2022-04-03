@@ -5,7 +5,7 @@ import Details from '../Components/Details';
 import myContext from '../Context/myContext';
 import { getfavoriteFoodLocalStore } from '../Helpers/favoriteLocalStore';
 
-function DrinkDetails({ match }) {
+function DrinkDetails({ match, history }) {
   const { setdetailRecipeInfo, detailRecipeInfo,
     setIsFavoriteBtn } = useContext(myContext);
   const [dataDrinkDetails, setDataDrinkDetails] = useState([]);
@@ -26,8 +26,6 @@ function DrinkDetails({ match }) {
     const functeste = () => {
       let teste2;
       const favoritesLocalStore = getfavoriteFoodLocalStore();
-      console.log('local storage', favoritesLocalStore);
-      console.log(detailRecipeInfo);
       if (detailRecipeInfo.length > 0) {
         if (detailRecipeInfo[0].idDrink) {
           teste2 = favoritesLocalStore
@@ -47,13 +45,18 @@ function DrinkDetails({ match }) {
   return (
     dataDrinkDetails
     && (
-      <Details dataOfDetails={ dataDrinkDetails } path={ thisPathName } />
+      <Details
+        dataOfDetails={ dataDrinkDetails }
+        path={ thisPathName }
+        history={ history }
+      />
     )
   );
 }
 
 DrinkDetails.propTypes = {
   match: PropTypes.objectOf.isRequired,
+  history: PropTypes.shape({}).isRequired,
 
 };
 

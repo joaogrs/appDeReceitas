@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-// import myContext from '../Context/myContext';
 import IngredientsList from './IngredientsList';
 import ShareButtonDetailsRecipes from './ShareButtonDetailsRecipes';
 import FavoriteButtonRecipes from './FavoriteButtonRecipes';
+import RecomendationCard from './RecomendationCard';
 
-function Details({ dataOfDetails, path }) {
+function Details({ dataOfDetails, path, history }) {
+  const [video, setVideo] = useState('');
+
+  useEffect(() => {
+    const { strYoutube } = dataOfDetails;
+    setVideo(strYoutube);
+  }, [dataOfDetails]);
+  const btnIniciarReceitaDrinks = () => {
+    const { location } = history;
+    history.push(`${location.pathname}/in-progress`);
+  };
+  const btnIniciarReceitaFoods = () => {
+    const { location } = history;
+    history.push(`${location.pathname}/in-progress`);
+  };
   return (
     path.includes('drinks') ? (
       <section data-testid="recipe-details">
@@ -18,13 +32,20 @@ function Details({ dataOfDetails, path }) {
         <ShareButtonDetailsRecipes />
         <FavoriteButtonRecipes />
         <p data-testid="recipe-category">{dataOfDetails.strAlcoholic}</p>
+        <h2 data-testid="recipe-category">{dataOfDetails.strAlcoholic}</h2>
         <IngredientsList dataDetails={ dataOfDetails } />
         <div>
           <h2>Instructions</h2>
           <p data-testid="instructions">{dataOfDetails.strInstructions}</p>
         </div>
-        <div data-testid="$index-recomendation-card">receitas recomendadas</div>
-        <button data-testid="start-recipe-btn" type="button">iniciar receita</button>
+        <RecomendationCard path={ path } />
+        <button
+          data-testid="start-recipe-btn"
+          type="button"
+          onClick={ () => { btnIniciarReceitaDrinks(); } }
+        >
+          iniciar receita
+        </button>
       </section>
     ) : (
       <section data-testid="recipe-details">
@@ -42,17 +63,43 @@ function Details({ dataOfDetails, path }) {
           <h2>Instructions</h2>
           <p data-testid="instructions">{dataOfDetails.strInstructions}</p>
         </div>
-        <a data-testid="video" href={ dataOfDetails.strYoutube }>Video</a>
-        <div data-testid="$index-recomendation-card">receitas recomendadas</div>
-        <button data-testid="start-recipe-btn" type="button">iniciar receita</button>
+        {video && (<iframe
+          src={ video.replace('watch?v=', 'embed/') }
+          data-testid="video"
+          title="Youtube Video Player"
+          frameBorder="0"
+          allow="
+          accelerometer;
+          autoplay;
+          clipboard-write;
+          encrypted-media;
+          gyroscope;
+          picture-in-picture
+          "
+          allowFullScreen
+        />)}
+        <RecomendationCard path={ path } />
+        <button
+          data-testid="start-recipe-btn"
+          type="button"
+          onClick={ () => { btnIniciarReceitaFoods(); } }
+        >
+          iniciar receita
+        </button>
       </section>
     )
   );
 }
 
 Details.propTypes = {
-  dataOfDetails: PropTypes.objectOf.isRequired,
+  dataOfDetails: PropTypes.func.isRequired,
   path: PropTypes.string.isRequired,
+  history: PropTypes.shape({
+    location: PropTypes.shape({
+      pathname: PropTypes.string,
+    }).isRequired,
+    push: PropTypes.func,
+  }).isRequired,
 };
 
 export default Details;
