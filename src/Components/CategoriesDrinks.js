@@ -14,7 +14,7 @@ const CategoriesDrinks = () => {
       for (let i = 0; i <= maxLength; i += 1) {
         newArrCategories[i] = categoriesDrinks.drinks[i];
       }
-      console.log('new array categories', newArrCategories);
+      // console.log('new array categories', newArrCategories);
       setCardCategoriesDrinks([...newArrCategories]);
     }
   };

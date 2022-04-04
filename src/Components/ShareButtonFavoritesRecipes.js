@@ -1,28 +1,28 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
+// import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
 import shareIcon from '../images/shareIcon.svg';
-import myContext from '../Context/myContext';
 
-const ShareButtonDetailsRecipes = () => {
+const ShareButtonFavoriteRecipes = (info) => {
+  const { index } = info;
   const [btnShareshow, setBtnShareShow] = useState(true);
-  const { detailRecipeInfo } = useContext(myContext);
   const TWO_SECONDS = 2000;
-  const clickShareRecipe = async (object) => {
-    // console.log('clicou');
-    // console.log(object[0]);
-    // console.log('chaves do objeto', Object.keys(object[0])[0]);
-    if (Object.keys(object[0])[0] === 'idMeal') {
+  const clickShareRecipe = async () => {
+    // console.log('clicou btn favorite Recipes');
+    // console.log('info', info);
+    const { id, type } = info;
+    if (type === 'food') {
       // console.log('entrou no if meals');
-      await copy(`http://localhost:3000/foods/${object[0].idMeal}`);
+      await copy(`http://localhost:3000/foods/${id}`);
       // global.alert(LINK);
       setBtnShareShow(false);
       setTimeout(() => {
         setBtnShareShow(true);
       }, TWO_SECONDS);
     }
-    if (Object.keys(object[0])[0] === 'idDrink') {
+    if (type === 'drink') {
       // console.log('entrou no if drinks');
-      await copy(`http://localhost:3000/drinks/${object[0].idDrink}`);
+      await copy(`http://localhost:3000/drinks/${id}`);
       // global.alert(LINK);
       setBtnShareShow(false);
       setTimeout(() => {
@@ -35,8 +35,8 @@ const ShareButtonDetailsRecipes = () => {
       {btnShareshow ? (
         <input
           type="image"
-          onClick={ () => { clickShareRecipe(detailRecipeInfo); } }
-          data-testid="share-btn"
+          onClick={ () => { clickShareRecipe(); } }
+          data-testid={ `${index}-horizontal-share-btn` }
           src={ shareIcon }
           alt="compartilhar"
         />) : (<button type="button">Link copied!</button>
@@ -45,4 +45,4 @@ const ShareButtonDetailsRecipes = () => {
   );
 };
 
-export default ShareButtonDetailsRecipes;
+export default ShareButtonFavoriteRecipes;

@@ -6,7 +6,7 @@ import Footer from '../Components/Footer';
 function Profile(props) {
   const { setShowSearchInput } = useContext(myContext);
   useEffect(() => {
-    console.log('didMount');
+    // console.log('didMount');
     setShowSearchInput((prevState) => !prevState);
   }, []);
   return (

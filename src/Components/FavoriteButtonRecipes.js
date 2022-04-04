@@ -51,23 +51,23 @@ const FavoriteButtonRecipes = () => {
     }
   };
   const clickFavoriteRecipe = (objectDetail) => {
-    console.log('Clicou Favoritar');
-    console.log(objectDetail);
+    // console.log('Clicou Favoritar');
+    // console.log(objectDetail);
     defineObjectFavorite(objectDetail);
     setIsFavoriteBtn((prevState) => (!prevState));
   };
 
   const verifyLocalStoreFoodOrDrink = (favoriteLocalStore, currentId) => {
-    console.log('estão no local Store', favoriteLocalStore);
+    // console.log('estão no local Store', favoriteLocalStore);
     const favoriteLocalStoreFilter = favoriteLocalStore
       .filter((item) => item.id !== currentId);
-    console.log('Novas favorites', favoriteLocalStoreFilter);
+    // console.log('Novas favorites', favoriteLocalStoreFilter);
     newFavoriteFoodLocalStore(favoriteLocalStoreFilter);
   };
 
   const clickNotFavoriteRecipe = (objectDetail) => {
-    console.log('clicou Desfavoritar');
-    console.log(objectDetail);
+    // console.log('clicou Desfavoritar');
+    // console.log(objectDetail);
     let currentId;
     if (objectDetail.idMeal) {
       currentId = objectDetail.idMeal;
@@ -78,26 +78,6 @@ const FavoriteButtonRecipes = () => {
     verifyLocalStoreFoodOrDrink(favoriteLocalStore, currentId);
     setIsFavoriteBtn((prevState) => (!prevState));
   };
-
-  // useEffect(() => {
-  //   const functeste = () => {
-  //     let teste2;
-  //     const favoritesLocalStore = getfavoriteFoodLocalStore();
-  //     console.log('local storage', favoritesLocalStore);
-  //     if (detailRecipeInfo[0].idDrink) {
-  //       teste2 = favoritesLocalStore
-  //         .some((item) => item.id === detailRecipeInfo[0].idDrink);
-  //       // setIsFavoriteBtn((prevState) => (!prevState));
-  //     } else if (detailRecipeInfo[0].idMeal) {
-  //       teste2 = favoritesLocalStore
-  //         .some((item) => item.id === detailRecipeInfo[0].idMeal);
-  //       // setIsFavoriteBtn((prevState) => (!prevState));
-  //     }
-  //     setIsFavoriteBtn(teste2);
-  //   };
-  //   functeste();
-  //   console.log('didimount', detailRecipeInfo);
-  // }, [detailRecipeInfo]);
 
   return (
     <div>
