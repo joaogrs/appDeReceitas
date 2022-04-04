@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-// import useLocalStorage from '../Helpers/useLocalStorage';
+import myContext from '../Context/myContext';
 import getEmailLocalStorage from '../Helpers/getEmailLocalStorage';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 
 function Profile(props) {
   const { history } = props;
+
+  const { setShowSearchInput } = useContext(myContext);
+  useEffect(() => {
+    console.log('didMount');
+    setShowSearchInput((prevState) => !prevState);
+  }, []);
 
   const handleClick = () => {
     localStorage.clear();
