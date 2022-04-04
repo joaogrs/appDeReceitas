@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import useLocalStorage from '../Helpers/useLocalStorage';
 
 function Login(props) {
   const { history } = props;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
-  const [valueOne, setValueOne] = useLocalStorage('mealsToken', 0);
-  const [valueTwo, setValueTwo] = useLocalStorage('cocktailsToken', 0);
-  const [valueThree, setValueThree] = useLocalStorage('user', '');
 
   const handleEmail = (event) => {
     setEmail(event.target.value);
@@ -33,10 +29,12 @@ function Login(props) {
   }, [email, password]);
 
   const handleClick = async () => {
-    await setValueOne(1);
-    await setValueTwo(1);
+    localStorage.setItem('mealsToken', JSON.stringify(1));
+    localStorage.setItem('cocktailsToken', JSON.stringify(1));
+
     const obj = { email };
-    setValueThree(obj);
+    localStorage.setItem('user', JSON.stringify(obj));
+
     history.push('/foods');
   };
 
@@ -67,9 +65,6 @@ function Login(props) {
       >
         Enter
       </button>
-      <h2>{ valueOne }</h2>
-      <h2>{ valueTwo }</h2>
-      <h2>{ JSON.stringify(valueThree) }</h2>
     </div>
   );
 }
