@@ -10,6 +10,8 @@ function Provider({ children }) {
   const [categoriesDrinks, setCategoriesDrinks] = useState([]);
   const [detailRecipeInfo, setdetailRecipeInfo] = useState([]);
   const [isFavoriteBtn, setIsFavoriteBtn] = useState(false);
+  const [filteredByIngredient, setFilteredByIngredient] = useState(false);
+  const [ingredientSelectInExplore, setIngredientSelect] = useState('');
   const stateContext = {
     isHiddenSearchBar,
     setVisibleSearchBar,
@@ -25,6 +27,10 @@ function Provider({ children }) {
     setdetailRecipeInfo,
     isFavoriteBtn,
     setIsFavoriteBtn,
+    filteredByIngredient,
+    setFilteredByIngredient,
+    ingredientSelectInExplore,
+    setIngredientSelect,
   };
 
   return (

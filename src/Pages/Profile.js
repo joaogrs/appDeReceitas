@@ -10,7 +10,6 @@ function Profile(props) {
 
   const { setShowSearchInput } = useContext(myContext);
   useEffect(() => {
-    console.log('didMount');
     setShowSearchInput((prevState) => !prevState);
   }, []);
 
@@ -24,7 +23,6 @@ function Profile(props) {
     <section>
       <h1>Profile </h1>
       <Header { ...props } pageTitle="Profile" />
-      <Footer />
 
       <h3 data-testid="profile-email">{ getEmailLocalStorage() }</h3>
 
@@ -51,6 +49,7 @@ function Profile(props) {
       >
         Logout
       </button>
+      <Footer />
     </section>);
 }
 
