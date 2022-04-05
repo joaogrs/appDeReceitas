@@ -1,79 +1,80 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
-// import useLocalStorage from '../Helpers/useLocalStorage';
+import myContext from '../Context/myContext';
+import { fetchApi } from '../Helpers/useFetch';
+import IngredientsListInProgress from '../Components/IngredientsListInProgress';
 
 function RecipeInProgress(props) {
-  const { history } = props;
-  const [checkedIngredient, setCheckedIngredient] = useState(false);
-  // const [value, setValue] = useLocalStorage('inProgressRecipes', '');
-  const [disabled, setDisabled] = useState(true);
+  const {
+    recipeInProgress,
+    setRecipeInProgress,
+  } = useContext(myContext);
 
-  handleCheckIngredient = (event) => {
-    if (event.checked === false) {
-      event.target.classList.add('completed');
-      setCheckedIngredient(true);
-    }
-    if (event.checked === true) {
-      event.target.classList.remove('completed');
-      setCheckedIngredient(false);
-    }
-  };
+  useEffect(() => {
+    const setApiFood = async () => {
+      const { match } = props;
+      const { params } = match;
+      const { id } = params;
+      const endpoint = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
+      const dataFood = await fetchApi(endpoint);
+      setRecipeInProgress([...dataFood.meals]);
+    };
+    setApiFood();
+  }, []);
+  // const { history } = props;
+  // const [disabled, setDisabled] = useState(true);
 
-  handleFinishRecipe = () => {
-    history.push('/done-recipes');
-  };
+  // handleFinishRecipe = () => {
+  //   history.push('/done-recipes');
+  // };
 
   return (
-    <section>
-      <div>
-        <img data-testid="recipe-photo" alt="" />
-        <h2 data-testid="recipe-title">1</h2>
-        <button
-          type="button"
-          data-testid="share-btn"
-        >
-          Compartilhar
-        </button>
-        <button
-          type="button"
-          data-testid="favorite-btn"
-        >
-          Favoritar
-        </button>
-        <span data-testid="recipe-category">1</span>
-        {algumacoisa.map((ingredient, index) => (
-          <div key={ `${index}` }>
-            <label
-              data-testid={ `${index}-ingredient-step` }
-              htmlFor={ ingredient.name }
-            >
-              {ingredient.name}
-            </label>
-            <input
-              type="checkbox"
-              id={ ingredient.name }
-              name={ ingredient.name }
-              checked={ checkedIngredient }
-              onClick={ (event) => handleCheckIngredient(event) }
-            />
-          </div>
-        ))}
-        <span data-testid="instructions">1</span>
-        <button
-          type="button"
-          data-testid="finish-recipe-btn"
-          disabled={ disabled }
-          onClick={ () => handleFinishRecipe() }
-        >
-          Finish Recipe
-        </button>
-      </div>
-    </section>
+    recipeInProgress.length > 0 && (
+      <section>
+        <div>
+          <img
+            width="30%"
+            height="30%"
+            data-testid="recipe-photo"
+            alt={ recipeInProgress[0].idMeal }
+            src={ recipeInProgress[0].strMealThumb }
+          />
+          <h1 data-testid="recipe-title">{recipeInProgress[0].strMeal}</h1>
+          <button
+            type="button"
+            data-testid="share-btn"
+          >
+            Compartilhar
+          </button>
+          <button
+            type="button"
+            data-testid="favorite-btn"
+          >
+            Favoritar
+          </button>
+          <span data-testid="recipe-category">{ recipeInProgress[0].strCategory }</span>
+          <IngredientsListInProgress
+            dataDetails={ recipeInProgress[0] }
+          />
+          <span data-testid="instructions">{ recipeInProgress[0].strInstructions }</span>
+          <button
+            type="button"
+            data-testid="finish-recipe-btn"
+            // disabled={ disabled }
+            onClick={ () => handleFinishRecipe() }
+          >
+            Finish Recipe
+          </button>
+        </div>
+      </section>
+    )
   );
 }
 
 RecipeInProgress.propTypes = {
   history: PropTypes.shape({ push: PropTypes.func }).isRequired,
+  match: PropTypes
+    .shape({ params: PropTypes.shape({ id: PropTypes.string }) }).isRequired,
 };
 
 export default RecipeInProgress;
