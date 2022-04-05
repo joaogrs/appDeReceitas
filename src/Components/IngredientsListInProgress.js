@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './style.css';
-import InProgressLocalStorage from '../Helpers/InProgressLocalStorage';
+import {
+  InProgressLocalStorage, getIngredients } from '../Helpers/InProgressLocalStorage';
 
 function IngredientsListInProgress({ dataDetails }) {
   const [arrayIngredientsAndQuantities, setArrayIngredientsAndQuantities] = useState([]);
+  const [arrayUsedIngredients, setArrayUsedIngredients] = useState([]);
   const location = useLocation();
 
   const createIngredientAndQuantity = () => {
@@ -37,11 +39,20 @@ function IngredientsListInProgress({ dataDetails }) {
     console.log('elemento clicado', stringIngredientsAndQuantity);
     if (routeArr[1] === 'foods') {
       InProgressLocalStorage(stringIngredientsAndQuantity, routeArr[2], 'meals');
+      setArrayUsedIngredients((prevState) => [
+        ...prevState, stringIngredientsAndQuantity]);
     }
     if (routeArr[1] === 'drinks') {
       InProgressLocalStorage(stringIngredientsAndQuantity, routeArr[2], 'cocktails');
+      setArrayUsedIngredients((prevState) => [
+        ...prevState, stringIngredientsAndQuantity]);
     }
   };
+
+  useEffect(() => {
+    const usedIngredients = getIngredients(routeArr[1], routeArr[2]);
+    setArrayUsedIngredients(usedIngredients);
+  }, []);
 
   return (
     arrayIngredientsAndQuantities.length > 0 && (
@@ -59,6 +70,10 @@ function IngredientsListInProgress({ dataDetails }) {
                   id={ `${i}-ingredient-step` }
                   name={ stringIngredientsAndQuantity }
                   className="input-id"
+                  checked={
+                    arrayUsedIngredients
+                      .some((iten) => iten === stringIngredientsAndQuantity)
+                  }
                   onClick={ () => handleClickChecked(stringIngredientsAndQuantity) }
                 />
                 <span className="label-checkbox">{stringIngredientsAndQuantity}</span>

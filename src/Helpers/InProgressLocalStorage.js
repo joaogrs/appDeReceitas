@@ -1,4 +1,4 @@
-const InProgressLocalStorage = (ingredient, id, type) => {
+export const InProgressLocalStorage = (ingredient, id, type) => {
   const inProgressStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
   if (inProgressStorage && inProgressStorage[type]) {
     const objRecipe = inProgressStorage[type];
@@ -11,7 +11,7 @@ const InProgressLocalStorage = (ingredient, id, type) => {
               ...inProgressStorage,
               [type]: {
                 ...objRecipe, [id]: [...arrIngredient, ingredient] } }));
-      } else { console.log('id igual'); }
+      }
     } else {
       localStorage
         .setItem('inProgressRecipes', JSON
@@ -26,4 +26,25 @@ const InProgressLocalStorage = (ingredient, id, type) => {
         .stringify({ ...inProgressStorage, [type]: obj }));
   }
 };
-export default InProgressLocalStorage;
+
+export const getIngredients = (type, id) => {
+  const valueLocalStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  if (!valueLocalStorage) { return []; }
+  console.log(valueLocalStorage);
+  if (type === 'foods') {
+    if (!valueLocalStorage.meals[id]) {
+      return [];
+    }
+    if (valueLocalStorage.meals[id] && type === 'foods') {
+      return valueLocalStorage.meals[id];
+    }
+  }
+  if (type === 'drinks') {
+    if (!valueLocalStorage.cocktails[id]) {
+      return [];
+    }
+    if (valueLocalStorage.cocktails[id] && type === 'drinks') {
+      return valueLocalStorage.cocktails[id];
+    }
+  }
+};
