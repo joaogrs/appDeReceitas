@@ -3,9 +3,13 @@ import PropTypes from 'prop-types';
 import myContext from '../Context/myContext';
 import { fetchApi } from '../Helpers/useFetch';
 import IngredientsListInProgress from '../Components/IngredientsListInProgress';
+import ShareButtonInProgressDrinks from '../Components/ShareButtonInProgressDrinks';
+import FavoriteButtonInProgressDrinks from '../Components/FavoriteButtonInProgressDrinks';
+import { getfavoriteFoodLocalStore } from '../Helpers/favoriteLocalStore';
 
 function DrinkInProgress(props) {
-  const { drinkInProgress, setDrinkInProgress } = useContext(myContext);
+  const { drinkInProgress, setDrinkInProgress,
+    setIsFavoriteBtn } = useContext(myContext);
 
   useEffect(() => {
     const setApiFood = async () => {
@@ -18,6 +22,20 @@ function DrinkInProgress(props) {
     };
     setApiFood();
   }, []);
+  useEffect(() => {
+    const functeste = () => {
+      let teste2;
+      const favoritesLocalStore = getfavoriteFoodLocalStore();
+      if (drinkInProgress.length > 0) {
+        if (drinkInProgress[0].idDrink) {
+          teste2 = favoritesLocalStore
+            .some((item) => item.id === drinkInProgress[0].idDrink);
+        }
+        setIsFavoriteBtn(teste2);
+      }
+    };
+    functeste();
+  }, [drinkInProgress]);
   // const { history } = props;
   // const [value, setValue] = useLocalStorage('inProgressRecipes', '');
   // const [disabled, setDisabled] = useState(true);
@@ -38,18 +56,8 @@ function DrinkInProgress(props) {
             src={ drinkInProgress[0].strDrinkThumb }
           />
           <h1 data-testid="recipe-title">{drinkInProgress[0].strDrink}</h1>
-          <button
-            type="button"
-            data-testid="share-btn"
-          >
-            Compartilhar
-          </button>
-          <button
-            type="button"
-            data-testid="favorite-btn"
-          >
-            Favoritar
-          </button>
+          <ShareButtonInProgressDrinks />
+          <FavoriteButtonInProgressDrinks />
           <span data-testid="recipe-category">{ drinkInProgress[0].strAlcoholic }</span>
           <IngredientsListInProgress
             dataDetails={ drinkInProgress[0] }

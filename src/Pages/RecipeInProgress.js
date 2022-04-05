@@ -3,11 +3,15 @@ import PropTypes from 'prop-types';
 import myContext from '../Context/myContext';
 import { fetchApi } from '../Helpers/useFetch';
 import IngredientsListInProgress from '../Components/IngredientsListInProgress';
+import ShareButtonInProgressFoods from '../Components/ShareButtonInProgressFoods';
+import FavoriteButtonInProgressFoods from '../Components/FavoriteButtonInProgressFoods';
+import { getfavoriteFoodLocalStore } from '../Helpers/favoriteLocalStore';
 
 function RecipeInProgress(props) {
   const {
     recipeInProgress,
     setRecipeInProgress,
+    setIsFavoriteBtn,
   } = useContext(myContext);
 
   useEffect(() => {
@@ -21,6 +25,21 @@ function RecipeInProgress(props) {
     };
     setApiFood();
   }, []);
+
+  useEffect(() => {
+    const functeste = () => {
+      let teste2;
+      const favoritesLocalStore = getfavoriteFoodLocalStore();
+      if (recipeInProgress.length > 0) {
+        if (recipeInProgress[0].idMeal) {
+          teste2 = favoritesLocalStore
+            .some((item) => item.id === recipeInProgress[0].idMeal);
+        }
+        setIsFavoriteBtn(teste2);
+      }
+    };
+    functeste();
+  }, [recipeInProgress]);
   // const { history } = props;
   // const [disabled, setDisabled] = useState(true);
 
@@ -40,18 +59,8 @@ function RecipeInProgress(props) {
             src={ recipeInProgress[0].strMealThumb }
           />
           <h1 data-testid="recipe-title">{recipeInProgress[0].strMeal}</h1>
-          <button
-            type="button"
-            data-testid="share-btn"
-          >
-            Compartilhar
-          </button>
-          <button
-            type="button"
-            data-testid="favorite-btn"
-          >
-            Favoritar
-          </button>
+          <ShareButtonInProgressFoods />
+          <FavoriteButtonInProgressFoods />
           <span data-testid="recipe-category">{ recipeInProgress[0].strCategory }</span>
           <IngredientsListInProgress
             dataDetails={ recipeInProgress[0] }
