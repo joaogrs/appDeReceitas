@@ -7,16 +7,31 @@ import { fetchApi } from '../Helpers/useFetch';
 import myContext from '../Context/myContext';
 
 function Foods(props) {
-  const { setApiData, setCategoriesFoods } = useContext(myContext);
+  const { setApiData,
+    setCategoriesFoods,
+    filteredByIngredient,
+    ingredientSelectInExplore } = useContext(myContext);
+
   useEffect(() => {
-    (async () => {
+    const setInitialApi = async () => {
       const endpointInitial = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
       const endpointCategories = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
       const foodsInitial = await fetchApi(endpointInitial);
       const categoriesFood = await fetchApi(endpointCategories);
       setCategoriesFoods(categoriesFood);
       setApiData(foodsInitial);
-    })();
+    };
+    const setFilteredApi = async () => {
+      const endpointFiltered = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredientSelectInExplore}`;
+      const endpointCategories = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
+      const foodsFiltered = await fetchApi(endpointFiltered);
+      const categoriesFood = await fetchApi(endpointCategories);
+      setCategoriesFoods(categoriesFood);
+      setApiData(foodsFiltered);
+    };
+    if (filteredByIngredient === true) {
+      setFilteredApi();
+    } else setInitialApi();
   }, []);
   return (
     <section>
