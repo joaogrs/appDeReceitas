@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './style.css';
 import {
   InProgressLocalStorage, getIngredients } from '../Helpers/InProgressLocalStorage';
+import myContext from '../Context/myContext';
 
 function IngredientsListInProgress({ dataDetails }) {
   const [arrayIngredientsAndQuantities, setArrayIngredientsAndQuantities] = useState([]);
   const [arrayUsedIngredients, setArrayUsedIngredients] = useState([]);
+  const { setdisablebtnFinishRecipe } = useContext(myContext);
   const location = useLocation();
 
   const createIngredientAndQuantity = () => {
@@ -53,6 +55,20 @@ function IngredientsListInProgress({ dataDetails }) {
     const usedIngredients = getIngredients(routeArr[1], routeArr[2]);
     setArrayUsedIngredients(usedIngredients);
   }, []);
+
+  useEffect(() => {
+    const enableBtnFinish = () => {
+      const stringAllIngredientes = JSON.stringify(arrayIngredientsAndQuantities);
+      const stringFinishedIngredientes = JSON.stringify(arrayUsedIngredients);
+      if (stringAllIngredientes === stringFinishedIngredientes) {
+        console.log('São Iguais');
+        setdisablebtnFinishRecipe(false);
+      } else {
+        setdisablebtnFinishRecipe(true);
+      }
+    };
+    enableBtnFinish();
+  }, [arrayUsedIngredients]);
 
   return (
     arrayIngredientsAndQuantities.length > 0 && (

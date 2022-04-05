@@ -9,7 +9,9 @@ import { getfavoriteFoodLocalStore } from '../Helpers/favoriteLocalStore';
 
 function DrinkInProgress(props) {
   const { drinkInProgress, setDrinkInProgress,
-    setIsFavoriteBtn } = useContext(myContext);
+    setIsFavoriteBtn, disablebtnFinishRecipe } = useContext(myContext);
+  // const [disabled, setDisabled] = useState(true);
+  const { history } = props;
 
   useEffect(() => {
     const setApiFood = async () => {
@@ -36,13 +38,9 @@ function DrinkInProgress(props) {
     };
     functeste();
   }, [drinkInProgress]);
-  // const { history } = props;
-  // const [value, setValue] = useLocalStorage('inProgressRecipes', '');
-  // const [disabled, setDisabled] = useState(true);
-
-  // handleFinishRecipe = () => {
-  //   history.push('/done-recipes');
-  // };
+  const handleFinishRecipe = () => {
+    history.push('/done-recipes');
+  };
 
   return (
     drinkInProgress.length > 0 && (
@@ -66,7 +64,7 @@ function DrinkInProgress(props) {
           <button
             type="button"
             data-testid="finish-recipe-btn"
-            // disabled={ disabled }
+            disabled={ disablebtnFinishRecipe }
             onClick={ () => handleFinishRecipe() }
           >
             Finish Recipe

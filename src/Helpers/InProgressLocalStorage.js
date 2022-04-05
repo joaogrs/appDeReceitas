@@ -32,6 +32,9 @@ export const getIngredients = (type, id) => {
   if (!valueLocalStorage) { return []; }
   console.log(valueLocalStorage);
   if (type === 'foods') {
+    if (!valueLocalStorage.meals) {
+      return [];
+    }
     if (!valueLocalStorage.meals[id]) {
       return [];
     }

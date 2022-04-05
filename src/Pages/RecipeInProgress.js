@@ -12,7 +12,9 @@ function RecipeInProgress(props) {
     recipeInProgress,
     setRecipeInProgress,
     setIsFavoriteBtn,
+    disablebtnFinishRecipe,
   } = useContext(myContext);
+  const { history } = props;
 
   useEffect(() => {
     const setApiFood = async () => {
@@ -40,12 +42,10 @@ function RecipeInProgress(props) {
     };
     functeste();
   }, [recipeInProgress]);
-  // const { history } = props;
-  // const [disabled, setDisabled] = useState(true);
 
-  // handleFinishRecipe = () => {
-  //   history.push('/done-recipes');
-  // };
+  const handleFinishRecipe = () => {
+    history.push('/done-recipes');
+  };
 
   return (
     recipeInProgress.length > 0 && (
@@ -69,7 +69,7 @@ function RecipeInProgress(props) {
           <button
             type="button"
             data-testid="finish-recipe-btn"
-            // disabled={ disabled }
+            disabled={ disablebtnFinishRecipe }
             onClick={ () => handleFinishRecipe() }
           >
             Finish Recipe
@@ -87,26 +87,3 @@ RecipeInProgress.propTypes = {
 };
 
 export default RecipeInProgress;
-
-// {
-//   cocktails: {
-//       id-da-bebida: [lista-de-ingredientes-utilizados],
-//       ...
-//   },
-//   meals: {
-//       id-da-comida: [lista-de-ingredientes-utilizados],
-//       ...
-//   }
-// }
-
-// [{
-//   id: id-da-receita,
-//   type: comida-ou-bebida,
-//   nationality: nacionalidade-da-receita-ou-texto-vazio,
-//   category: categoria-da-receita-ou-texto-vazio,
-//   alcoholicOrNot: alcoholic-ou-non-alcoholic-ou-texto-vazio,
-//   name: nome-da-receita,
-//   image: imagem-da-receita,
-//   doneDate: quando-a-receita-foi-concluida,
-//   tags: array-de-tags-da-receita-ou-array-vazio
-// }]

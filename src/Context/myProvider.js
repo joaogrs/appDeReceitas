@@ -12,6 +12,7 @@ function Provider({ children }) {
   const [recipeInProgress, setRecipeInProgress] = useState([]);
   const [drinkInProgress, setDrinkInProgress] = useState([]);
   const [isFavoriteBtn, setIsFavoriteBtn] = useState(false);
+  const [disablebtnFinishRecipe, setdisablebtnFinishRecipe] = useState(true);
   const stateContext = {
     isHiddenSearchBar,
     setVisibleSearchBar,
@@ -33,6 +34,8 @@ function Provider({ children }) {
     setDrinkInProgress,
     // unfinishedRecipes,
     // setUnfinishedRecipes,
+    disablebtnFinishRecipe,
+    setdisablebtnFinishRecipe,
   };
 
   return (
