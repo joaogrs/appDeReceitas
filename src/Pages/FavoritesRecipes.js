@@ -9,6 +9,7 @@ function FavoritesRecipes(props) {
     setFavoriteRecipesFilter } = useContext(myContext);
   useEffect(() => {
     // console.log('didMount');
+    // aaaaaaa
     setShowSearchInput((prevState) => !prevState);
     const favoriteLocalStore = getfavoriteFoodLocalStore();
     setFavoriteRecipes(favoriteLocalStore);
