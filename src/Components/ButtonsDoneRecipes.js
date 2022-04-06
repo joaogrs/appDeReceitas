@@ -10,12 +10,12 @@ const ButtonsDoneRecipes = () => {
   };
   const filterByFood = () => {
     // console.log('clicou Food');
-    const foodFilter = doneRecipes((recipe) => (recipe.type === 'foods'));
+    const foodFilter = doneRecipes.filter((recipe) => (recipe.type === 'food'));
     setDoneRecipesFilter(foodFilter);
   };
   const filterByDrink = () => {
     // console.log('clicou Drink');
-    const drinksFilter = doneRecipes((recipe) => (recipe.type === 'drinks'));
+    const drinksFilter = doneRecipes.filter((recipe) => (recipe.type === 'drink'));
     setDoneRecipesFilter(drinksFilter);
   };
   return (

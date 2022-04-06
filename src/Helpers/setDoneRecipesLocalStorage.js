@@ -1,4 +1,4 @@
-const setDoneRecipesLocalStorage = (doneObject) => {
+export const setDoneRecipesLocalStorage = (doneObject) => {
   const doneRecipesStorage = JSON.parse(localStorage.getItem('doneRecipes'));
   if (!doneRecipesStorage) {
     localStorage
@@ -12,4 +12,10 @@ const setDoneRecipesLocalStorage = (doneObject) => {
   }
 };
 
-export default setDoneRecipesLocalStorage;
+export const getDoneRecipesLocalStorage = () => {
+  const doneRecipesStorage = JSON.parse(localStorage.getItem('doneRecipes'));
+  if (!doneRecipesStorage) {
+    return [];
+  }
+  return doneRecipesStorage;
+};
