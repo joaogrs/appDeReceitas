@@ -10,6 +10,15 @@ function Provider({ children }) {
   const [categoriesDrinks, setCategoriesDrinks] = useState([]);
   const [doneRecipes, setDoneRecipes] = useState([]);
   const [doneRecipesFilter, setDoneRecipesFilter] = useState([]);
+  const [detailRecipeInfo, setdetailRecipeInfo] = useState([]);
+  const [recipeInProgress, setRecipeInProgress] = useState([]);
+  const [drinkInProgress, setDrinkInProgress] = useState([]);
+  const [isFavoriteBtn, setIsFavoriteBtn] = useState(false);
+  const [favoritesRecipes, setFavoriteRecipes] = useState([]);
+  const [favoritesRecipesfilter, setFavoriteRecipesFilter] = useState([]);
+  const [disablebtnFinishRecipe, setdisablebtnFinishRecipe] = useState(true);
+  const [filteredByIngredient, setFilteredByIngredient] = useState(false);
+  const [ingredientSelectInExplore, setIngredientSelect] = useState('');
   const stateContext = {
     isHiddenSearchBar,
     setVisibleSearchBar,
@@ -25,6 +34,24 @@ function Provider({ children }) {
     setDoneRecipes,
     doneRecipesFilter,
     setDoneRecipesFilter,
+    detailRecipeInfo,
+    setdetailRecipeInfo,
+    isFavoriteBtn,
+    setIsFavoriteBtn,
+    favoritesRecipes,
+    setFavoriteRecipes,
+    favoritesRecipesfilter,
+    setFavoriteRecipesFilter,
+    recipeInProgress,
+    setRecipeInProgress,
+    drinkInProgress,
+    setDrinkInProgress,
+    disablebtnFinishRecipe,
+    setdisablebtnFinishRecipe,
+    filteredByIngredient,
+    setFilteredByIngredient,
+    ingredientSelectInExplore,
+    setIngredientSelect,
   };
 
   return (
