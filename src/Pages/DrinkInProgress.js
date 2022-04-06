@@ -6,6 +6,7 @@ import IngredientsListInProgress from '../Components/IngredientsListInProgress';
 import ShareButtonInProgressDrinks from '../Components/ShareButtonInProgressDrinks';
 import FavoriteButtonInProgressDrinks from '../Components/FavoriteButtonInProgressDrinks';
 import { getfavoriteFoodLocalStore } from '../Helpers/favoriteLocalStore';
+import { removeDoneRecipesLocalStorage } from '../Helpers/InProgressLocalStorage';
 
 function DrinkInProgress(props) {
   const { drinkInProgress, setDrinkInProgress,
@@ -38,7 +39,9 @@ function DrinkInProgress(props) {
     };
     functeste();
   }, [drinkInProgress]);
-  const handleFinishRecipe = () => {
+  const handleFinishRecipe = (objectRecipe) => {
+    const { idDrink } = objectRecipe;
+    removeDoneRecipesLocalStorage(idDrink, 'cocktails');
     history.push('/done-recipes');
   };
 
@@ -65,7 +68,7 @@ function DrinkInProgress(props) {
             type="button"
             data-testid="finish-recipe-btn"
             disabled={ disablebtnFinishRecipe }
-            onClick={ () => handleFinishRecipe() }
+            onClick={ () => handleFinishRecipe(drinkInProgress[0]) }
           >
             Finish Recipe
           </button>

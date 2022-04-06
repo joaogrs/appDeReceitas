@@ -6,6 +6,7 @@ import IngredientsListInProgress from '../Components/IngredientsListInProgress';
 import ShareButtonInProgressFoods from '../Components/ShareButtonInProgressFoods';
 import FavoriteButtonInProgressFoods from '../Components/FavoriteButtonInProgressFoods';
 import { getfavoriteFoodLocalStore } from '../Helpers/favoriteLocalStore';
+import { removeDoneRecipesLocalStorage } from '../Helpers/InProgressLocalStorage';
 
 function RecipeInProgress(props) {
   const {
@@ -43,7 +44,9 @@ function RecipeInProgress(props) {
     functeste();
   }, [recipeInProgress]);
 
-  const handleFinishRecipe = () => {
+  const handleFinishRecipe = (objectRecipe) => {
+    const { idMeal } = objectRecipe;
+    removeDoneRecipesLocalStorage(idMeal, 'meals');
     history.push('/done-recipes');
   };
 
@@ -70,7 +73,7 @@ function RecipeInProgress(props) {
             type="button"
             data-testid="finish-recipe-btn"
             disabled={ disablebtnFinishRecipe }
-            onClick={ () => handleFinishRecipe() }
+            onClick={ () => handleFinishRecipe(recipeInProgress[0]) }
           >
             Finish Recipe
           </button>
