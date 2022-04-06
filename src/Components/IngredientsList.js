@@ -7,7 +7,8 @@ function IngredientsList({ dataDetails }) {
   const createIngredientAndQuantity = () => {
     const ingredientsKeys = Object.keys(dataDetails)
       .filter((ingredient) => ingredient.includes('strIngredient'))
-      .filter((ingredient) => (dataDetails[ingredient] !== ''));
+      .filter((ingredient) => (dataDetails[ingredient] !== ''))
+      .filter((ingredient) => (dataDetails[ingredient] !== null));
 
     const quantitiesKeys = Object.keys(dataDetails)
       .filter((quantity) => quantity.includes('strMeasure'))
@@ -45,7 +46,7 @@ function IngredientsList({ dataDetails }) {
 }
 
 IngredientsList.propTypes = {
-  dataDetails: PropTypes.objectOf.isRequired,
+  dataDetails: PropTypes.shape({}).isRequired,
 };
 
 export default IngredientsList;
