@@ -6,11 +6,12 @@ import IngredientsListInProgress from '../Components/IngredientsListInProgress';
 import ShareButtonInProgressDrinks from '../Components/ShareButtonInProgressDrinks';
 import FavoriteButtonInProgressDrinks from '../Components/FavoriteButtonInProgressDrinks';
 import { getfavoriteFoodLocalStore } from '../Helpers/favoriteLocalStore';
+import { removeDoneRecipesLocalStorage } from '../Helpers/InProgressLocalStorage';
+import setDoneRecipesLocalStorage from '../Helpers/setDoneRecipesLocalStorage';
 
 function DrinkInProgress(props) {
   const { drinkInProgress, setDrinkInProgress,
     setIsFavoriteBtn, disablebtnFinishRecipe } = useContext(myContext);
-  // const [disabled, setDisabled] = useState(true);
   const { history } = props;
 
   useEffect(() => {
@@ -24,6 +25,7 @@ function DrinkInProgress(props) {
     };
     setApiFood();
   }, []);
+
   useEffect(() => {
     const functeste = () => {
       let teste2;
@@ -38,7 +40,50 @@ function DrinkInProgress(props) {
     };
     functeste();
   }, [drinkInProgress]);
-  const handleFinishRecipe = () => {
+
+  const isAlcoholicOrNot = (string) => {
+    if (string === 'Optional alcohol') {
+      return ('Non alcoholic');
+    }
+    if (string === 'Alcoholic') {
+      return string;
+    }
+    if (string === 'Non alcoholic') {
+      return string;
+    }
+  };
+
+  const dateFinal = () => {
+    const timeElapsed = Date.now();
+    const today = new Date(timeElapsed);
+    return today.toLocaleDateString();
+  };
+
+  const handleFinishRecipe = (objectRecipe) => {
+    console.log(objectRecipe);
+    const {
+      idDrink,
+      strArea,
+      strCategory,
+      strDrink,
+      strDrinkThumb,
+      strAlcoholic } = objectRecipe;
+
+    const objDone = {
+      id: idDrink,
+      type: 'drink',
+      nationality: strArea || '',
+      category: strCategory,
+      alcoholicOrNot: isAlcoholicOrNot(strAlcoholic),
+      name: strDrink,
+      image: strDrinkThumb,
+      doneDate: dateFinal(),
+      tags: [],
+    };
+
+    setDoneRecipesLocalStorage(objDone);
+
+    removeDoneRecipesLocalStorage(idDrink, 'cocktails');
     history.push('/done-recipes');
   };
 
@@ -65,7 +110,7 @@ function DrinkInProgress(props) {
             type="button"
             data-testid="finish-recipe-btn"
             disabled={ disablebtnFinishRecipe }
-            onClick={ () => handleFinishRecipe() }
+            onClick={ () => handleFinishRecipe(drinkInProgress[0]) }
           >
             Finish Recipe
           </button>

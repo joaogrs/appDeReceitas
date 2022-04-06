@@ -6,6 +6,8 @@ import IngredientsListInProgress from '../Components/IngredientsListInProgress';
 import ShareButtonInProgressFoods from '../Components/ShareButtonInProgressFoods';
 import FavoriteButtonInProgressFoods from '../Components/FavoriteButtonInProgressFoods';
 import { getfavoriteFoodLocalStore } from '../Helpers/favoriteLocalStore';
+import { removeDoneRecipesLocalStorage } from '../Helpers/InProgressLocalStorage';
+import setDoneRecipesLocalStorage from '../Helpers/setDoneRecipesLocalStorage';
 
 function RecipeInProgress(props) {
   const {
@@ -43,7 +45,48 @@ function RecipeInProgress(props) {
     functeste();
   }, [recipeInProgress]);
 
-  const handleFinishRecipe = () => {
+  const dateFinal = () => {
+    const timeElapsed = Date.now();
+    const today = new Date(timeElapsed);
+    return today.toLocaleDateString();
+  };
+
+  const filterTags = (strTags) => {
+    if (strTags === null || strTags === '') { return []; }
+    if (strTags) {
+      if (strTags.includes(',')) {
+        return strTags.split(',');
+      }
+      return [strTags];
+    }
+  };
+
+  const handleFinishRecipe = (objectRecipe) => {
+    console.log(objectRecipe);
+    const {
+      idMeal,
+      strArea,
+      strCategory,
+      strMeal,
+      strMealThumb,
+      strTags,
+    } = objectRecipe;
+
+    const objDone = {
+      id: idMeal,
+      type: 'food',
+      nationality: strArea,
+      category: strCategory,
+      alcoholicOrNot: '',
+      name: strMeal,
+      image: strMealThumb,
+      doneDate: dateFinal(),
+      tags: filterTags(strTags),
+    };
+
+    setDoneRecipesLocalStorage(objDone);
+
+    removeDoneRecipesLocalStorage(idMeal, 'meals');
     history.push('/done-recipes');
   };
 
@@ -70,7 +113,7 @@ function RecipeInProgress(props) {
             type="button"
             data-testid="finish-recipe-btn"
             disabled={ disablebtnFinishRecipe }
-            onClick={ () => handleFinishRecipe() }
+            onClick={ () => handleFinishRecipe(recipeInProgress[0]) }
           >
             Finish Recipe
           </button>
