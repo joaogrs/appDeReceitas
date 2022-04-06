@@ -11,7 +11,7 @@ function ExploreDrink(props) {
 
   const { setShowSearchInput } = useContext(myContext);
   useEffect(() => {
-    console.log('didMount');
+    // console.log('didMount');
     setShowSearchInput((prevState) => !prevState);
 
     const fetchRandom = async () => {

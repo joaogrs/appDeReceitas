@@ -12,6 +12,8 @@ function Provider({ children }) {
   const [recipeInProgress, setRecipeInProgress] = useState([]);
   const [drinkInProgress, setDrinkInProgress] = useState([]);
   const [isFavoriteBtn, setIsFavoriteBtn] = useState(false);
+  const [favoritesRecipes, setFavoriteRecipes] = useState([]);
+  const [favoritesRecipesfilter, setFavoriteRecipesFilter] = useState([]);
   const [disablebtnFinishRecipe, setdisablebtnFinishRecipe] = useState(true);
   const [filteredByIngredient, setFilteredByIngredient] = useState(false);
   const [ingredientSelectInExplore, setIngredientSelect] = useState('');
@@ -30,6 +32,10 @@ function Provider({ children }) {
     setdetailRecipeInfo,
     isFavoriteBtn,
     setIsFavoriteBtn,
+    favoritesRecipes,
+    setFavoriteRecipes,
+    favoritesRecipesfilter,
+    setFavoriteRecipesFilter,
     recipeInProgress,
     setRecipeInProgress,
     drinkInProgress,

@@ -10,6 +10,7 @@ function ExploreDrinksIngredients(props) {
   const { setShowSearchInput,
     setFilteredByIngredient, setIngredientSelect } = useContext(myContext);
   useEffect(() => {
+    // console.log('didMount');
     setShowSearchInput((prevState) => !prevState);
     const fetchDrinksIngredients = async () => {
       const ARRAY_LENGTH = 12;

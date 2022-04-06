@@ -11,6 +11,7 @@ function ExploreRecipesIngredients(props) {
     setFilteredByIngredient, setIngredientSelect } = useContext(myContext);
 
   useEffect(() => {
+    // console.log('didMount');
     setShowSearchInput((prevState) => !prevState);
     const fetchIngredients = async () => {
       const ARRAY_LENGTH = 12;

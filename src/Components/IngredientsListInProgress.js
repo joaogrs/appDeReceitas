@@ -41,13 +41,11 @@ function IngredientsListInProgress({ dataDetails }) {
     console.log('elemento clicado', stringIngredientsAndQuantity);
     if (routeArr[1] === 'foods') {
       InProgressLocalStorage(stringIngredientsAndQuantity, routeArr[2], 'meals');
-      setArrayUsedIngredients((prevState) => [
-        ...prevState, stringIngredientsAndQuantity]);
+      setArrayUsedIngredients(getIngredients(routeArr[1], routeArr[2]));
     }
     if (routeArr[1] === 'drinks') {
       InProgressLocalStorage(stringIngredientsAndQuantity, routeArr[2], 'cocktails');
-      setArrayUsedIngredients((prevState) => [
-        ...prevState, stringIngredientsAndQuantity]);
+      setArrayUsedIngredients(getIngredients(routeArr[1], routeArr[2]));
     }
   };
 
