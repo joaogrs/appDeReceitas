@@ -10,9 +10,8 @@ function Profile(props) {
 
   const { setShowSearchInput } = useContext(myContext);
   useEffect(() => {
-    console.log('didMount');
-    setShowSearchInput(false);
-  }, [setShowSearchInput]);
+    setShowSearchInput((prevState) => !prevState);
+  }, []);
 
   const handleClick = () => {
     localStorage.clear();

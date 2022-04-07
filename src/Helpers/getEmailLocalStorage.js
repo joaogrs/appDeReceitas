@@ -1,5 +1,9 @@
 const getEmailLocalStorage = () => {
-  const { email } = JSON.parse(localStorage.getItem('user'));
+  const emailLocalStorage = JSON.parse(localStorage.getItem('user'));
+  if (!emailLocalStorage) {
+    return '';
+  }
+  const { email } = emailLocalStorage;
   return email;
 };
 

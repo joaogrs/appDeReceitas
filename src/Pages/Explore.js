@@ -8,7 +8,7 @@ function Explore(props) {
   const { history } = props;
   const { setShowSearchInput } = useContext(myContext);
   useEffect(() => {
-    console.log('didMount');
+    // console.log('didMount');
     setShowSearchInput((prevState) => !prevState);
   }, []);
 
