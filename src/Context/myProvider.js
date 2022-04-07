@@ -8,6 +8,8 @@ function Provider({ children }) {
   const [apiData, setApiData] = useState([]);
   const [categoriesFoods, setCategoriesFoods] = useState([]);
   const [categoriesDrinks, setCategoriesDrinks] = useState([]);
+  const [doneRecipes, setDoneRecipes] = useState([]);
+  const [doneRecipesFilter, setDoneRecipesFilter] = useState([]);
   const [detailRecipeInfo, setdetailRecipeInfo] = useState([]);
   const [recipeInProgress, setRecipeInProgress] = useState([]);
   const [drinkInProgress, setDrinkInProgress] = useState([]);
@@ -28,6 +30,10 @@ function Provider({ children }) {
     setCategoriesFoods,
     categoriesDrinks,
     setCategoriesDrinks,
+    doneRecipes,
+    setDoneRecipes,
+    doneRecipesFilter,
+    setDoneRecipesFilter,
     detailRecipeInfo,
     setdetailRecipeInfo,
     isFavoriteBtn,

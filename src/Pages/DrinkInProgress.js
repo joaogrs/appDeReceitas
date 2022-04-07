@@ -7,7 +7,7 @@ import ShareButtonInProgressDrinks from '../Components/ShareButtonInProgressDrin
 import FavoriteButtonInProgressDrinks from '../Components/FavoriteButtonInProgressDrinks';
 import { getfavoriteFoodLocalStore } from '../Helpers/favoriteLocalStore';
 import { removeDoneRecipesLocalStorage } from '../Helpers/InProgressLocalStorage';
-import setDoneRecipesLocalStorage from '../Helpers/setDoneRecipesLocalStorage';
+import { setDoneRecipesLocalStorage } from '../Helpers/setDoneRecipesLocalStorage';
 
 function DrinkInProgress(props) {
   const { drinkInProgress, setDrinkInProgress,

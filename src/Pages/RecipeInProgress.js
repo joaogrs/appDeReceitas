@@ -7,7 +7,7 @@ import ShareButtonInProgressFoods from '../Components/ShareButtonInProgressFoods
 import FavoriteButtonInProgressFoods from '../Components/FavoriteButtonInProgressFoods';
 import { getfavoriteFoodLocalStore } from '../Helpers/favoriteLocalStore';
 import { removeDoneRecipesLocalStorage } from '../Helpers/InProgressLocalStorage';
-import setDoneRecipesLocalStorage from '../Helpers/setDoneRecipesLocalStorage';
+import { setDoneRecipesLocalStorage } from '../Helpers/setDoneRecipesLocalStorage';
 
 function RecipeInProgress(props) {
   const {
