@@ -30,3 +30,4 @@ export const getLocalStorageDoneRecipes = (pathname) => {
     return doneRecipesStorage.some((recipe) => recipe.id === idPath);
   }
 };
+// oil
