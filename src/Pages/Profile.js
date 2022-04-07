@@ -9,9 +9,10 @@ function Profile(props) {
   const { history } = props;
 
   const { setShowSearchInput } = useContext(myContext);
+
   useEffect(() => {
     setShowSearchInput((prevState) => !prevState);
-  }, []);
+  }, [setShowSearchInput]);
 
   const handleClick = () => {
     localStorage.clear();

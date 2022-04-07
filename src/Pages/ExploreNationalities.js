@@ -1,12 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import myContext from '../Context/myContext';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 import { fetchApi } from '../Helpers/useFetch';
 
 function ExploreNationalities(props) {
-  const { setShowSearchInput } = useContext(myContext);
   const [dataNationality, setDataNationality] = useState();
   const [recipesNationalities, setRecipesNationalities] = useState();
   const [allrecipes, setAllRecipes] = useState();
@@ -24,8 +22,7 @@ function ExploreNationalities(props) {
   };
 
   useEffect(() => {
-    console.log('didMount');
-    setShowSearchInput((prevState) => !prevState);
+    // setShowSearchInput((prevState) => !prevState);
     const fetchNationalities = async () => {
       const endpoint = 'https://www.themealdb.com/api/json/v1/1/list.php?a=list';
       const data = await fetchApi(endpoint);
