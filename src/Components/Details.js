@@ -4,6 +4,9 @@ import IngredientsList from './IngredientsList';
 import ShareButtonDetailsRecipes from './ShareButtonDetailsRecipes';
 import FavoriteButtonRecipes from './FavoriteButtonRecipes';
 import RecomendationCard from './RecomendationCard';
+import '../styles/footer.css';
+import {
+  getLocalStorageDoneRecipes, getLocalStorageInProgress } from '../Helpers/buttonDetails';
 
 function Details({ dataOfDetails, path, history }) {
   const [video, setVideo] = useState('');
@@ -20,6 +23,78 @@ function Details({ dataOfDetails, path, history }) {
     const { location } = history;
     history.push(`${location.pathname}/in-progress`);
   };
+
+  useEffect(() => {
+    const { location } = history;
+    const { pathname } = location;
+    getLocalStorageDoneRecipes(pathname);
+    getLocalStorageInProgress(pathname);
+  }, []);
+
+  const handleButtonRecipe = () => {
+    const { location } = history;
+    const { pathname } = location;
+    if (getLocalStorageDoneRecipes(pathname)) {
+      return '';
+    }
+    if (getLocalStorageInProgress(pathname)) {
+      return (
+        <button
+          className="footer"
+          data-testid="start-recipe-btn"
+          type="button"
+          onClick={ () => { btnIniciarReceitaFoods(); } }
+        >
+          Continue Recipe
+        </button>
+      );
+    }
+    if (!getLocalStorageInProgress(pathname)) {
+      return (
+        <button
+          className="footer"
+          data-testid="start-recipe-btn"
+          type="button"
+          onClick={ () => { btnIniciarReceitaFoods(); } }
+        >
+          Start Recipe
+        </button>
+      );
+    }
+  };
+
+  const handleButtonDrink = () => {
+    const { location } = history;
+    const { pathname } = location;
+    if (getLocalStorageDoneRecipes(pathname)) {
+      return '';
+    }
+    if (getLocalStorageInProgress(pathname)) {
+      return (
+        <button
+          className="footer"
+          data-testid="start-recipe-btn"
+          type="button"
+          onClick={ () => { btnIniciarReceitaDrinks(); } }
+        >
+          Continue Recipe
+        </button>
+      );
+    }
+    if (!getLocalStorageInProgress(pathname)) {
+      return (
+        <button
+          className="footer"
+          data-testid="start-recipe-btn"
+          type="button"
+          onClick={ () => { btnIniciarReceitaDrinks(); } }
+        >
+          Start Recipe
+        </button>
+      );
+    }
+  };
+
   return (
     path.includes('drinks') ? (
       <section data-testid="recipe-details">
@@ -39,13 +114,7 @@ function Details({ dataOfDetails, path, history }) {
           <p data-testid="instructions">{dataOfDetails.strInstructions}</p>
         </div>
         <RecomendationCard path={ path } />
-        <button
-          data-testid="start-recipe-btn"
-          type="button"
-          onClick={ () => { btnIniciarReceitaDrinks(); } }
-        >
-          iniciar receita
-        </button>
+        {handleButtonDrink()}
       </section>
     ) : (
       <section data-testid="recipe-details">
@@ -79,13 +148,7 @@ function Details({ dataOfDetails, path, history }) {
           allowFullScreen
         />)}
         <RecomendationCard path={ path } />
-        <button
-          data-testid="start-recipe-btn"
-          type="button"
-          onClick={ () => { btnIniciarReceitaFoods(); } }
-        >
-          iniciar receita
-        </button>
+        {handleButtonRecipe()}
       </section>
     )
   );
