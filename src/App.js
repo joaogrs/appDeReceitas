@@ -19,6 +19,7 @@ import ExploreNationalities from './Pages/ExploreNationalities';
 import ExploreRecipe from './Pages/ExploreRecipe';
 import ExploreRecipeIngredients from './Pages/ExploreRecipeIngredients';
 import FavoritesRecipes from './Pages/FavoritesRecipes';
+import NotFound from './Pages/NotFound';
 
 function App() {
   return (
@@ -75,6 +76,11 @@ function App() {
           exact
           path="/favorite-recipes"
           component={ FavoritesRecipes }
+        />
+        <Route
+          exact
+          path="/explore/drinks/nationalities"
+          component={ NotFound }
         />
       </Switch>
     </Provider>
