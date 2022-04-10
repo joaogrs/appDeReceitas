@@ -59,6 +59,7 @@ const CategoriesDrinks = () => {
           data-testid={ `${element.strCategory}-category-filter` }
           type="button"
           onClick={ () => handleClickCategorieDrinks(element) }
+          className="btn-warning"
         >
           { element.strCategory }
         </button>
@@ -67,6 +68,7 @@ const CategoriesDrinks = () => {
         type="button"
         data-testid="All-category-filter"
         onClick={ () => handleClickAllCategoriesDrinks() }
+        className="btn-success"
       >
         All
       </button>

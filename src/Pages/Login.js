@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import './styles.css';
+import LogoNovo from '../images/logo-novo.png';
 
 function Login(props) {
   const { history } = props;
@@ -39,32 +41,41 @@ function Login(props) {
   };
 
   return (
-    <div>
-      <input
-        type="email"
-        name="email"
-        value={ email }
-        data-testid="email-input"
-        placeholder="E-mail"
-        onChange={ handleEmail }
-      />
-      <input
-        type="password"
-        name="password"
-        value={ password }
-        data-testid="password-input"
-        placeholder="Senha"
-        onChange={ handlePassword }
-      />
-      <button
-        id="buttonEnter"
-        type="button"
-        data-testid="login-submit-btn"
-        disabled={ disabled }
-        onClick={ handleClick }
-      >
-        Enter
-      </button>
+    <div className="login-container">
+      <div>
+        <img src={ LogoNovo } alt="" />
+      </div>
+      <h1 className="title-app">Tech Recipes</h1>
+      <div>
+        <input
+          type="email"
+          name="email"
+          value={ email }
+          data-testid="email-input"
+          placeholder="E-mail"
+          onChange={ handleEmail }
+        />
+        <input
+          type="password"
+          name="password"
+          value={ password }
+          data-testid="password-input"
+          placeholder="Senha"
+          onChange={ handlePassword }
+        />
+        <div>
+          <button
+            id="buttonEnter"
+            type="button"
+            data-testid="login-submit-btn"
+            disabled={ disabled }
+            onClick={ handleClick }
+            className="button-enter"
+          >
+            Enter
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
