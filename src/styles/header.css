@@ -5,6 +5,7 @@
   flex-direction: column;
   width: 360px;
   position: relative;
+  height: 95px;
 }
 
 h1 {

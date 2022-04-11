@@ -4,6 +4,7 @@ import Footer from '../Components/Footer';
 import myContext from '../Context/myContext';
 import Header from '../Components/Header';
 import { fetchApi } from '../Helpers/useFetch';
+import '../styles/explore-drinks.css';
 
 function ExploreDrink(props) {
   const { history } = props;
@@ -27,26 +28,26 @@ function ExploreDrink(props) {
   };
 
   return (
-    <section>
-      <h1>Explore Drink</h1>
+    <section className="container-explore-drinks">
       <Header { ...props } pageTitle="Explore Drinks" />
+      <div className="btns-container">
+        <button
+          type="button"
+          data-testid="explore-by-ingredient"
+          onClick={ () => handlePush('./drinks/ingredients') }
+        >
+          By Ingredient
+        </button>
+
+        <button
+          type="button"
+          data-testid="explore-surprise"
+          onClick={ () => handlePush(`/drinks/${dataRandom.idDrink}`) }
+        >
+          Surprise me!
+        </button>
+      </div>
       <Footer />
-
-      <button
-        type="button"
-        data-testid="explore-by-ingredient"
-        onClick={ () => handlePush('./drinks/ingredients') }
-      >
-        By Ingredient
-      </button>
-
-      <button
-        type="button"
-        data-testid="explore-surprise"
-        onClick={ () => handlePush(`/drinks/${dataRandom.idDrink}`) }
-      >
-        Surprise me!
-      </button>
     </section>
   );
 }

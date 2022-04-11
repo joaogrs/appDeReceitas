@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Footer from '../Components/Footer';
 import myContext from '../Context/myContext';
 import Header from '../Components/Header';
+import '../styles/explore.css';
 
 function Explore(props) {
   const { history } = props;
@@ -21,25 +22,29 @@ function Explore(props) {
   };
 
   return (
-    <section>
-      <h1>Explore</h1>
+    <section className="container-explore">
       <Header { ...props } pageTitle="Explore" />
+      <div className="btns-container">
+        <div className="btn-one">
+          <button
+            type="button"
+            data-testid="explore-foods"
+            onClick={ handleFoods }
+          >
+            Explore Foods
+          </button>
+        </div>
+        <div className="btn-two">
+          <button
+            type="button"
+            data-testid="explore-drinks"
+            onClick={ handleDrinks }
+          >
+            Explore Drinks
+          </button>
+        </div>
+      </div>
       <Footer />
-
-      <button
-        type="button"
-        data-testid="explore-foods"
-        onClick={ handleFoods }
-      >
-        Explore Foods
-      </button>
-      <button
-        type="button"
-        data-testid="explore-drinks"
-        onClick={ handleDrinks }
-      >
-        Explore Drinks
-      </button>
     </section>
   );
 }

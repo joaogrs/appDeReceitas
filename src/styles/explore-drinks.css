@@ -1,0 +1,15 @@
+.container-explore-drinks {
+  width: 360px;
+  height: 640px;
+}
+
+.btns-container {
+  display: flex;
+
+}
+
+.btns-container button {
+  margin-top: 30px;
+  font-weight: 900;
+  height: 80px;
+}

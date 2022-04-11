@@ -4,6 +4,7 @@ import Footer from '../Components/Footer';
 import myContext from '../Context/myContext';
 import Header from '../Components/Header';
 import { fetchApi } from '../Helpers/useFetch';
+import '../styles/explore_recipes.css';
 
 function ExploreRecipes(props) {
   const { history } = props;
@@ -27,34 +28,34 @@ function ExploreRecipes(props) {
   };
 
   return (
-    <section>
-      <h1>Explore Recipes</h1>
+    <section className="container-explore-recipe">
       <Header { ...props } pageTitle="Explore Foods" />
+      <div className="btns-container">
+        <button
+          type="button"
+          data-testid="explore-by-ingredient"
+          onClick={ () => handlePush('./foods/ingredients') }
+        >
+          By Ingredient
+        </button>
+
+        <button
+          type="button"
+          data-testid="explore-by-nationality"
+          onClick={ () => handlePush('./foods/nationalities') }
+        >
+          By Nationality
+        </button>
+
+        <button
+          type="button"
+          data-testid="explore-surprise"
+          onClick={ () => handlePush(`/foods/${dataRandom.idMeal}`) }
+        >
+          Surprise me!
+        </button>
+      </div>
       <Footer />
-
-      <button
-        type="button"
-        data-testid="explore-by-ingredient"
-        onClick={ () => handlePush('./foods/ingredients') }
-      >
-        By Ingredient
-      </button>
-
-      <button
-        type="button"
-        data-testid="explore-by-nationality"
-        onClick={ () => handlePush('./foods/nationalities') }
-      >
-        By Nationality
-      </button>
-
-      <button
-        type="button"
-        data-testid="explore-surprise"
-        onClick={ () => handlePush(`/foods/${dataRandom.idMeal}`) }
-      >
-        Surprise me!
-      </button>
     </section>
   );
 }

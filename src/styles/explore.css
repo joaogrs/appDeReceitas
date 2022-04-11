@@ -1,0 +1,22 @@
+.container-explore {
+  width: 360px;
+  height: 640px;
+}
+.btns-container {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
+  height: 200px;
+  width: 360;
+}
+.button-categorie {
+  padding: 10px 0px 0px 10px;
+}
+
+.btn-one button {
+  font-weight: 900;
+}
+
+.btn-two button {
+  font-weight: 900;
+}
