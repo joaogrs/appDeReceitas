@@ -27,7 +27,6 @@ function ExploreDrinksIngredients(props) {
 
   return (
     <section>
-      <h1>Explore Ingredients</h1>
       <Header { ...props } pageTitle="Explore Ingredients" />
       {dataDrink && dataDrink.map((objDrinkIngredient, i) => {
         const onClickLink = () => {

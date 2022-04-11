@@ -9,6 +9,9 @@
   height: 200px;
   width: 360;
 }
+.btns-container button {
+  border-radius: 20px;
+}
 .button-categorie {
   padding: 10px 0px 0px 10px;
 }

@@ -28,7 +28,6 @@ function ExploreRecipesIngredients(props) {
 
   return (
     <section>
-      <h1>Explore Ingredients</h1>
       <Header { ...props } pageTitle="Explore Ingredients" />
       {dataIgredients && dataIgredients.map((objIgredient, i) => {
         const onClickLink = () => {
