@@ -33,7 +33,7 @@ function RecomendationCard({ path }) {
   }, []);
   return path.includes('foods') ? (
     <section className="main-recomendation">
-      <h1>
+      <h1 className="recomendation">
         Recomendações
       </h1>
       <div className="main-card">
@@ -53,7 +53,7 @@ function RecomendationCard({ path }) {
     </section>
   ) : (
     <section className="main-recomendation">
-      <h1>
+      <h1 className="recomendation">
         Recomendações
       </h1>
       <div className="main-card">

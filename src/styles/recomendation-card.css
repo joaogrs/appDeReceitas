@@ -4,7 +4,7 @@
   flex-direction: row;
   margin: auto;
   max-height: 280px;
-  max-width: 340px;
+  max-width: 298px;
   overflow-y: scroll;
 
 }
@@ -12,4 +12,8 @@
 .img-recomendation {
   height: 250px;
   width: 140px;
+}
+
+.recomendation {
+  margin-left: 15px;
 }
