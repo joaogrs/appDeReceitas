@@ -5,6 +5,7 @@ import CategoriesFoods from '../Components/CategoriesFoods';
 import CardMeal from '../Components/CardMeal';
 import { fetchApi } from '../Helpers/useFetch';
 import myContext from '../Context/myContext';
+import '../styles/foods.css';
 
 function Foods(props) {
   const { setApiData,
@@ -34,8 +35,7 @@ function Foods(props) {
     } else setInitialApi();
   }, []);
   return (
-    <section>
-      <h1>Foods</h1>
+    <section className="container_foods">
       <Header { ...props } pageTitle="Foods" />
       <CategoriesFoods />
       <CardMeal />

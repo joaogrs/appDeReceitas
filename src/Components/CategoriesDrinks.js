@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import myContext from '../Context/myContext';
 import { fetchApi } from '../Helpers/useFetch';
+import '../styles/categories_drinks.css';
 
 const CategoriesDrinks = () => {
   const { categoriesDrinks, setApiData } = useContext(myContext);
@@ -14,7 +15,6 @@ const CategoriesDrinks = () => {
       for (let i = 0; i <= maxLength; i += 1) {
         newArrCategories[i] = categoriesDrinks.drinks[i];
       }
-      // console.log('new array categories', newArrCategories);
       setCardCategoriesDrinks([...newArrCategories]);
     }
   };
@@ -52,7 +52,7 @@ const CategoriesDrinks = () => {
   useEffect(() => { defineFiveCategories(); }, [categoriesDrinks]);
   return (
     <div>
-      <h2>Categories</h2>
+      {/* <h2>Categories</h2> */}
       { cardCategoriesDrinks && cardCategoriesDrinks.map((element, index) => (
         <button
           key={ index }

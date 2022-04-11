@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import myContext from '../Context/myContext';
+import '../styles/card_drinks.css';
 
 function CardDrink() {
   const { apiData } = useContext(myContext);

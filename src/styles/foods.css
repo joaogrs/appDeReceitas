@@ -1,0 +1,6 @@
+.container_foods {
+  display: flexbox;
+  flex-direction: column;
+  border-color: #FFF275;
+  width: 360px;
+}

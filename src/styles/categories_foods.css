@@ -1,0 +1,14 @@
+.categories_foods {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 360px;
+  justify-content: space-between;
+}
+
+button {
+  background-color: #b4000f;
+  color: white;
+  font-size: 12px;
+  width: 80px;
+}

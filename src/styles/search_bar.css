@@ -1,0 +1,27 @@
+.searchBar {
+  flex-direction: column;
+  margin-top: 10px;
+  margin-left: 3px;
+  margin-right: 3px;
+  width: 360px;
+}
+
+.input_search {
+  height: 25px;
+  min-width: 98%;
+}
+
+button {
+  width: 50px;
+}
+
+.formSearch {
+  align-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 12px;
+  justify-content: space-between;
+  margin-left: 3px;
+  margin-right: 3px;
+  width: 360px;
+}

@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import myContext from '../Context/myContext';
+import '../styles/card_meals.css';
 
 function CardMeal() {
   const { apiData } = useContext(myContext);
@@ -25,10 +26,11 @@ function CardMeal() {
   useEffect(() => { verifyData(); }, [apiData]);
 
   return (
-    <section>
+    <section className="card_meals">
       {verifyDataValue ? dataValue.map(({ strMeal, strMealThumb, idMeal }, index) => (
         <Link key={ index } to={ `/foods/${idMeal}` }>
           <div
+            className="item_card"
             data-testid={ `${index}-recipe-card` }
           >
             <div>

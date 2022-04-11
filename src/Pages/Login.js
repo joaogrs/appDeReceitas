@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import './styles.css';
 import LogoNovo from '../images/logo-novo.png';
+import '../styles/login.css';
 
 function Login(props) {
   const { history } = props;
@@ -42,11 +42,10 @@ function Login(props) {
 
   return (
     <div className="login-container">
-      <div>
+      <div className="logoImage">
         <img src={ LogoNovo } alt="" />
       </div>
-      <h1 className="title-app">Tech Recipes</h1>
-      <div>
+      <div className="inputs">
         <input
           type="email"
           name="email"

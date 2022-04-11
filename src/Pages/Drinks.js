@@ -33,8 +33,7 @@ function Drinks(props) {
     } else setInitialApi();
   }, []);
   return (
-    <section className="login-container">
-      <h1>Drinks</h1>
+    <section>
       <Header { ...props } pageTitle="Drinks" />
       <CategoriesDrinks />
       <CardDrink />

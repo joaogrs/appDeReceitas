@@ -97,15 +97,16 @@ function Details({ dataOfDetails, path, history }) {
 
   return (
     path.includes('drinks') ? (
-      <section data-testid="recipe-details">
+      <section data-testid="recipe-details" className="details">
         <img
+          className="img_details"
           data-testid="recipe-photo"
           src={ dataOfDetails.strDrinkThumb }
           alt="recipe-img"
         />
         <h1 data-testid="recipe-title">{dataOfDetails.strDrink}</h1>
-        <ShareButtonDetailsRecipes />
         <FavoriteButtonRecipes />
+        <ShareButtonDetailsRecipes />
         <p data-testid="recipe-category">{dataOfDetails.strAlcoholic}</p>
         <h2 data-testid="recipe-category">{dataOfDetails.strAlcoholic}</h2>
         <IngredientsList dataDetails={ dataOfDetails } />
@@ -117,8 +118,9 @@ function Details({ dataOfDetails, path, history }) {
         {handleButtonDrink()}
       </section>
     ) : (
-      <section data-testid="recipe-details">
+      <section data-testid="recipe-details" className="details">
         <img
+          className="img_details"
           data-testid="recipe-photo"
           src={ dataOfDetails.strMealThumb }
           alt="recipe-img"

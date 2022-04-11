@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import myContext from '../Context/myContext';
 import { endpointDrink, endpointMeal, fetchApi } from '../Helpers/useFetch';
 import { alertOneLetter, alertRecipesNotFound } from '../Helpers/alertFunctions';
+import '../styles/search_bar.css';
 
 const SearchBar = (props) => {
   const { history } = props;
@@ -51,10 +52,11 @@ const SearchBar = (props) => {
   };
 
   return (
-    <div>
+    <div className="searchBar">
       { isHiddenSearchBar ? (
-        <form>
+        <form className="formSearch">
           <input
+            className="input_search"
             data-testid="search-input"
             type="text"
             name="searchInput"

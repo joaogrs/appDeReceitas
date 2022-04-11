@@ -1,6 +1,8 @@
 .footer {
+  background-color: #FFF275;
   bottom: 0;
+  color: #b4000f;
   position: fixed;
   text-align: center;
-  width: 90%;
+  width: 360px;
 }

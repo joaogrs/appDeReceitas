@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import myContext from '../Context/myContext';
 import { fetchApi } from '../Helpers/useFetch';
+import '../styles/categories_foods.css';
 
 const CategoriesFoods = () => {
   const { categoriesFoods, setApiData } = useContext(myContext);
@@ -50,8 +51,8 @@ const CategoriesFoods = () => {
 
   useEffect(() => { defineFiveCategories(); }, [categoriesFoods]);
   return (
-    <div>
-      <h2>Categories</h2>
+    <div className="categories_foods">
+      {/* <h3>Categories</h3> */}
       { cardCategories && cardCategories.map((element, index) => (
         <button
           key={ index }
