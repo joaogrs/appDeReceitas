@@ -4,6 +4,7 @@ import Footer from '../Components/Footer';
 import myContext from '../Context/myContext';
 import Header from '../Components/Header';
 import { fetchApi } from '../Helpers/useFetch';
+import '../styles/explore_ingredients.css';
 
 function ExploreRecipesIngredients(props) {
   const [dataIgredients, setDataIngredients] = useState();
@@ -11,7 +12,6 @@ function ExploreRecipesIngredients(props) {
     setFilteredByIngredient, setIngredientSelect } = useContext(myContext);
 
   useEffect(() => {
-    // console.log('didMount');
     setShowSearchInput((prevState) => !prevState);
     const fetchIngredients = async () => {
       const ARRAY_LENGTH = 12;
@@ -29,23 +29,25 @@ function ExploreRecipesIngredients(props) {
   return (
     <section>
       <Header { ...props } pageTitle="Explore Ingredients" />
-      {dataIgredients && dataIgredients.map((objIgredient, i) => {
-        const onClickLink = () => {
-          setFilteredByIngredient(true);
-          setIngredientSelect(objIgredient.strIngredient);
-        };
-        return (
-          <Link key={ i } to="/foods" onClick={ onClickLink }>
-            <section data-testid={ `${i}-ingredient-card` }>
-              <img
-                alt="imagem do ingrediente"
-                src={ `https://www.themealdb.com/images/ingredients/${objIgredient.strIngredient}-Small.png` }
-                data-testid={ `${i}-card-img` }
-              />
-              <h2 data-testid={ `${i}-card-name` }>{objIgredient.strIngredient}</h2>
-            </section>
-          </Link>);
-      })}
+      <div className="card-ingredients">
+        {dataIgredients && dataIgredients.map((objIgredient, i) => {
+          const onClickLink = () => {
+            setFilteredByIngredient(true);
+            setIngredientSelect(objIgredient.strIngredient);
+          };
+          return (
+            <Link key={ i } to="/foods" onClick={ onClickLink }>
+              <section data-testid={ `${i}-ingredient-card` } className="ingredients">
+                <img
+                  alt="imagem do ingrediente"
+                  src={ `https://www.themealdb.com/images/ingredients/${objIgredient.strIngredient}-Small.png` }
+                  data-testid={ `${i}-card-img` }
+                />
+                <span data-testid={ `${i}-card-name` }>{objIgredient.strIngredient}</span>
+              </section>
+            </Link>);
+        })}
+      </div>
       <Footer />
     </section>
   );

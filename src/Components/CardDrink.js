@@ -25,10 +25,11 @@ function CardDrink() {
   useEffect(() => { verifyData(); }, [apiData]);
 
   return (
-    <section>
+    <section className="card_drinks">
       {verifyDataValue ? dataValue.map(({ strDrink, strDrinkThumb, idDrink }, index) => (
         <Link key={ index } to={ `/drinks/${idDrink}` }>
           <div
+            className="item_card"
             data-testid={ `${index}-recipe-card` }
           >
             <div>

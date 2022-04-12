@@ -1,26 +1,22 @@
 import React, { useContext } from 'react';
 import myContext from '../Context/myContext';
+import '../styles/favorites_recipes.css';
 
 const ButtonsFiltrarFavorites = () => {
   const { favoritesRecipes, setFavoriteRecipesFilter } = useContext(myContext);
   const filterByAll = () => {
-    // console.log('clicou All');
     setFavoriteRecipesFilter(favoritesRecipes);
   };
   const filterByFood = () => {
-    // console.log('clicou Food');
     const foodFilter = favoritesRecipes.filter((recipe) => recipe.type === 'food');
-    // console.log('food filter', foodFilter);
     setFavoriteRecipesFilter(foodFilter);
   };
   const filterByDrink = () => {
-    // console.log('clicou Drink');
     const drinksFilter = favoritesRecipes.filter((recipe) => recipe.type === 'drink');
-    // console.log('food drinks', drinksFilter);
     setFavoriteRecipesFilter(drinksFilter);
   };
   return (
-    <div>
+    <div className="btn_favorites">
       <button
         data-testid="filter-by-all-btn"
         type="button"

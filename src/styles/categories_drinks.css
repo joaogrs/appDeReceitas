@@ -1,4 +1,15 @@
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  width: 360px;
+  justify-content: space-between;
+}
+
 button {
   background-color: #b4000f;
   color: white;
+  font-size: 12px;
+  width: 100px;
 }

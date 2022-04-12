@@ -1,0 +1,46 @@
+.card {
+  width: 360px;
+}
+
+.btn_favorites {
+  display: flex;
+  justify-content: space-around;
+  width: 360px;
+}
+
+.btn_favorites button {
+  width: 60px;
+}
+
+.item_favorite {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
+  width: 360px;
+}
+
+.card_favorites {
+  align-content: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.card_favorites img {
+  border: 3px solid #b4000f;
+  height: 150px;
+  justify-content: center;
+  width: 150px;
+}
+
+.card_favorites h4 {
+  color: black;
+}
+
+.icons {
+  flex-direction: row;
+  justify-content: center;
+  width: 360px;
+}

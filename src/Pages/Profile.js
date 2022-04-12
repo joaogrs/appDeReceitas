@@ -4,6 +4,7 @@ import myContext from '../Context/myContext';
 import getEmailLocalStorage from '../Helpers/getEmailLocalStorage';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
+import '../styles/profile.css';
 
 function Profile(props) {
   const { history } = props;
@@ -22,34 +23,37 @@ function Profile(props) {
 
   return (
     <section>
-      <h1>Profile </h1>
       <Header { ...props } pageTitle="Profile" />
 
-      <h3 data-testid="profile-email">{ getEmailLocalStorage() }</h3>
+      <div className="email">
+        <h4 data-testid="profile-email">{ getEmailLocalStorage() }</h4>
+      </div>
 
-      <button
-        type="button"
-        data-testid="profile-done-btn"
-        onClick={ () => history.push('/done-recipes') }
-      >
-        Done Recipes
-      </button>
+      <div className="btns_profile">
+        <button
+          type="button"
+          data-testid="profile-done-btn"
+          onClick={ () => history.push('/done-recipes') }
+        >
+          Done Recipes
+        </button>
 
-      <button
-        type="button"
-        data-testid="profile-favorite-btn"
-        onClick={ () => history.push('/favorite-recipes') }
-      >
-        Favorite Recipes
-      </button>
+        <button
+          type="button"
+          data-testid="profile-favorite-btn"
+          onClick={ () => history.push('/favorite-recipes') }
+        >
+          Favorite Recipes
+        </button>
 
-      <button
-        type="button"
-        data-testid="profile-logout-btn"
-        onClick={ handleClick }
-      >
-        Logout
-      </button>
+        <button
+          type="button"
+          data-testid="profile-logout-btn"
+          onClick={ handleClick }
+        >
+          Logout
+        </button>
+      </div>
       <Footer />
     </section>);
 }

@@ -79,7 +79,7 @@ function App() {
         />
         <Route
           exact
-          path="/explore/drinks/nationalities"
+          path="*"
           component={ NotFound }
         />
       </Switch>

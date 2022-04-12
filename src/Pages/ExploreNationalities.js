@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 import { fetchApi } from '../Helpers/useFetch';
+import '../styles/explore_nationalities.css';
 
 function ExploreNationalities(props) {
   const [dataNationality, setDataNationality] = useState();
@@ -22,7 +23,6 @@ function ExploreNationalities(props) {
   };
 
   useEffect(() => {
-    // setShowSearchInput((prevState) => !prevState);
     const fetchNationalities = async () => {
       const endpoint = 'https://www.themealdb.com/api/json/v1/1/list.php?a=list';
       const data = await fetchApi(endpoint);
@@ -52,61 +52,72 @@ function ExploreNationalities(props) {
   };
 
   return (
-    <section>
+    <section className="explore_nationalities">
       <Header { ...props } pageTitle="Explore Nationalities" />
 
-      <label htmlFor="explore-nationality-dropdown">
-        <select
-          id="explore-nationality-dropdown"
-          data-testid="explore-by-nationality-dropdown"
-          onClick={ handleClick }
-        >
-          <option
-            value="All"
-            data-testid="All-option"
-            defaultValue
-            // onClick={ handleClickAll }
+      <div className="nationaly">
+        <label htmlFor="explore-nationality-dropdown">
+          <select
+            id="explore-nationality-dropdown"
+            data-testid="explore-by-nationality-dropdown"
+            onClick={ handleClick }
           >
-            All
-          </option>
-
-          { dataNationality && dataNationality.map((area) => (
             <option
-              key={ area.strArea }
-              value={ area.strArea }
-              data-testid={ `${area.strArea}-option` }
+              value="All"
+              data-testid="All-option"
               defaultValue
             >
-              {area.strArea}
-            </option>))}
-        </select>
-      </label>
+              All
+            </option>
 
-      {recipesNationalities && recipesNationalities.map((recipe, index) => (
-        <Link key={ recipe.strMeal } to={ `/foods/${recipe.idMeal}` }>
-          <section key={ recipe.strMeal } data-testid={ `${index}-recipe-card` }>
-            <img
-              data-testid={ `${index}-card-img` }
-              alt={ recipe.strMeal }
-              src={ recipe.strMealThumb }
-            />
-            <span data-testid={ `${index}-card-name` }>{recipe.strMeal}</span>
-          </section>
-        </Link>
-      ))}
+            { dataNationality && dataNationality.map((area) => (
+              <option
+                key={ area.strArea }
+                value={ area.strArea }
+                data-testid={ `${area.strArea}-option` }
+                defaultValue
+              >
+                {area.strArea}
+              </option>))}
+          </select>
+        </label>
+      </div>
 
-      {allrecipes && allrecipes.map((recipe, index) => (
-        <Link key={ recipe.strMeal } to={ `/foods/${recipe.idMeal}` }>
-          <section key={ recipe.strMeal } data-testid={ `${index}-recipe-card` }>
-            <img
-              data-testid={ `${index}-card-img` }
-              alt={ recipe.strMeal }
-              src={ recipe.strMealThumb }
-            />
-            <p data-testid={ `${index}-card-name` }>{recipe.strMeal}</p>
-          </section>
-        </Link>
-      ))}
+      <div className="card_nationality">
+        {recipesNationalities && recipesNationalities.map((recipe, index) => (
+          <Link key={ recipe.strMeal } to={ `/foods/${recipe.idMeal}` }>
+            <section
+              className="item_card"
+              key={ recipe.strMeal }
+              data-testid={ `${index}-recipe-card` }
+            >
+              <img
+                data-testid={ `${index}-card-img` }
+                alt={ recipe.strMeal }
+                src={ recipe.strMealThumb }
+              />
+              <span data-testid={ `${index}-card-name` }>{recipe.strMeal}</span>
+            </section>
+          </Link>
+        ))}
+
+        {allrecipes && allrecipes.map((recipe, index) => (
+          <Link key={ recipe.strMeal } to={ `/foods/${recipe.idMeal}` }>
+            <section
+              className="item_card"
+              key={ recipe.strMeal }
+              data-testid={ `${index}-recipe-card` }
+            >
+              <img
+                data-testid={ `${index}-card-img` }
+                alt={ recipe.strMeal }
+                src={ recipe.strMealThumb }
+              />
+              <p data-testid={ `${index}-card-name` }>{recipe.strMeal}</p>
+            </section>
+          </Link>
+        ))}
+      </div>
 
       <Footer />
     </section>

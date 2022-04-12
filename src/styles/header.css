@@ -10,8 +10,9 @@
 
 h1 {
   align-items: center;
+  flex-grow: 2;
   font-family: 'Times New Roman', Times, serif;
-  font-size: 18;
+  font-size: 14;
   font-style: italic;
   font-weight: bold;
   text-align: center;
@@ -21,11 +22,10 @@ h1 {
 .icons {
   display: flex;
   float: right;
-  height: 40px;
+  height: 35px;
   justify-content: space-between;
-  margin: 10px;
-  padding: 10px 20px 0px 20px ;
-  position: relative;
+  margin-top: 10px;
+  width: 120px;
 }
 
 .btns-image {
@@ -37,5 +37,6 @@ h1 {
 .logo-header {
   display: flex;
   height: 70px;
-  width: 100vh;
+  /* justify-content: space-between; */
+  width: 360px;
 }

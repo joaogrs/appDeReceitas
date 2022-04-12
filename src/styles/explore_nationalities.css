@@ -1,0 +1,26 @@
+.explore_nationalities {
+  width: 360px;
+}
+
+.nationaly {
+  margin-top: 35px;
+}
+
+.card_nationality {
+  display: grid;
+  margin-left: 10px;
+  grid-column-gap: 45px;
+  grid-template-columns: repeat(2, 40%);
+  width: 360px;
+}
+
+.item_card img{
+    border: 3px solid #b4000f;
+    height: 150px;
+    width: 150px;
+  }
+  
+  .item_card p {
+    color: black;
+    font-size: 18px;
+  }

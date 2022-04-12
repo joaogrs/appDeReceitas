@@ -24,7 +24,7 @@ const Header = (props) => {
           <img src={ LogoNovo } alt="" />
           <h1 data-testid="page-title">{ pageTitle }</h1>
 
-          <div className="icons">
+          <div className="icons" style={ { width: '120px' } }>
             <input
               data-testid="profile-top-btn"
               type="image"

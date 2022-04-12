@@ -8,8 +8,6 @@ function FavoritesRecipes(props) {
   const { setShowSearchInput, setFavoriteRecipes,
     setFavoriteRecipesFilter } = useContext(myContext);
   useEffect(() => {
-    // console.log('didMount');
-    // aaaaaaa
     setShowSearchInput((prevState) => !prevState);
     const favoriteLocalStore = getfavoriteFoodLocalStore();
     setFavoriteRecipes(favoriteLocalStore);
@@ -18,7 +16,6 @@ function FavoritesRecipes(props) {
 
   return (
     <section>
-      <h1>Favorites Recipes</h1>
       <Header { ...props } pageTitle="Favorite Recipes" />
       <CardFavoritesRecipes />
     </section>

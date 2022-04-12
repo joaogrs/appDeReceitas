@@ -3,14 +3,14 @@
   height: 640px;
 }
 .btns-container {
-  margin-top: 30px;
+  /* margin-top: 30px; */
   display: flex;
   justify-content: space-around;
-  height: 200px;
+  /* height: 200px; */
   width: 360;
 }
 .btns-container button {
-  border-radius: 20px;
+  /* border-radius: 20px; */
 }
 .button-categorie {
   padding: 10px 0px 0px 10px;

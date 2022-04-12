@@ -3,15 +3,14 @@ import myContext from '../Context/myContext';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import { getfavoriteFoodLocalStore,
   newFavoriteFoodLocalStore } from '../Helpers/favoriteLocalStore';
+import '../styles/favorites_recipes.css';
 
 const FavoriteButtonFavoriteRecipes = (info) => {
   const { index } = info;
   const { setFavoriteRecipes, setFavoriteRecipesFilter } = useContext(myContext);
   const verifyLocalStoreFoodOrDrink = (favoriteLocalStore, id) => {
-    // console.log('estão no local Store', favoriteLocalStore);
     const favoriteLocalStoreFilter = favoriteLocalStore
       .filter((item) => item.id !== id);
-    // console.log('Novas favorites', favoriteLocalStoreFilter);
     newFavoriteFoodLocalStore(favoriteLocalStoreFilter);
     setFavoriteRecipes(favoriteLocalStoreFilter);
     setFavoriteRecipesFilter(favoriteLocalStoreFilter);
@@ -19,9 +18,6 @@ const FavoriteButtonFavoriteRecipes = (info) => {
 
   const clickNotFavoriteRecipe = () => {
     const { id } = info;
-    // console.log('clicou Desfavoritar');
-    // console.log('info', info);
-    // console.log(id);
     const favoriteLocalStore = getfavoriteFoodLocalStore();
     verifyLocalStoreFoodOrDrink(favoriteLocalStore, id);
   };

@@ -51,7 +51,7 @@ const CategoriesDrinks = () => {
 
   useEffect(() => { defineFiveCategories(); }, [categoriesDrinks]);
   return (
-    <div>
+    <div className="buttons">
       {/* <h2>Categories</h2> */}
       { cardCategoriesDrinks && cardCategoriesDrinks.map((element, index) => (
         <button
@@ -59,7 +59,6 @@ const CategoriesDrinks = () => {
           data-testid={ `${element.strCategory}-category-filter` }
           type="button"
           onClick={ () => handleClickCategorieDrinks(element) }
-          className="btn-warning"
         >
           { element.strCategory }
         </button>
@@ -68,7 +67,6 @@ const CategoriesDrinks = () => {
         type="button"
         data-testid="All-category-filter"
         onClick={ () => handleClickAllCategoriesDrinks() }
-        className="btn-success"
       >
         All
       </button>

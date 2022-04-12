@@ -5,18 +5,19 @@ import '../Favorite.css';
 import ButtonsFiltrarFavorites from './ButtonsFiltrarFavorites';
 import FavoriteButtonFavoriteRecipes from './FavoriteButtonFavoriteRecipe';
 import ShareButtonFavoritesRecipes from './ShareButtonFavoritesRecipes';
+import '../styles/favorites_recipes.css';
 
 const CardFavoritesRecipes = () => {
   const { favoritesRecipesfilter } = useContext(myContext);
   return (
-    <section>
+    <section className="card">
       <ButtonsFiltrarFavorites />
-      <div>
+      <div className="card_favorites">
         { favoritesRecipesfilter.length > 0 ? favoritesRecipesfilter
           .map(({ id, name, type, image, category,
             nationality, alcoholicOrNot }, index) => (
             (
-              <div key={ index }>
+              <div className="item_favorite" key={ index }>
                 <Link to={ `/${type}s/${id}` }>
                   <img
                     className="img-favorite"
@@ -39,10 +40,12 @@ const CardFavoritesRecipes = () => {
                     </p>
                   ))}
                 <Link to={ `/${type}s/${id}` }>
-                  <h2 data-testid={ `${index}-horizontal-name` }>{ name }</h2>
+                  <h4 data-testid={ `${index}-horizontal-name` }>{ name }</h4>
                 </Link>
-                <ShareButtonFavoritesRecipes id={ id } type={ type } index={ index } />
-                <FavoriteButtonFavoriteRecipes id={ id } index={ index } />
+                <div className="icons">
+                  <ShareButtonFavoritesRecipes id={ id } type={ type } index={ index } />
+                  <FavoriteButtonFavoriteRecipes id={ id } index={ index } />
+                </div>
               </div>))) : null}
       </div>
     </section>

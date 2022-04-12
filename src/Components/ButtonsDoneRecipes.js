@@ -1,25 +1,22 @@
-// import React from 'react';
 import React, { useContext } from 'react';
 import myContext from '../Context/myContext';
+import '../styles/btn_done_recipes.css';
 
 const ButtonsDoneRecipes = () => {
   const { doneRecipes, setDoneRecipesFilter } = useContext(myContext);
   const filterByAll = () => {
-    // console.log('clicou All');
     setDoneRecipesFilter(doneRecipes);
   };
   const filterByFood = () => {
-    // console.log('clicou Food');
     const foodFilter = doneRecipes.filter((recipe) => (recipe.type === 'food'));
     setDoneRecipesFilter(foodFilter);
   };
   const filterByDrink = () => {
-    // console.log('clicou Drink');
     const drinksFilter = doneRecipes.filter((recipe) => (recipe.type === 'drink'));
     setDoneRecipesFilter(drinksFilter);
   };
   return (
-    <div>
+    <div className="btns_recipes">
       <button
         data-testid="filter-by-all-btn"
         type="button"
