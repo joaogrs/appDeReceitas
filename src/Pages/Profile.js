@@ -5,6 +5,7 @@ import getEmailLocalStorage from '../Helpers/getEmailLocalStorage';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import '../styles/profile.css';
+// css
 
 function Profile(props) {
   const { history } = props;
