@@ -71,7 +71,7 @@ function IngredientsListInProgress({ dataDetails }) {
   return (
     arrayIngredientsAndQuantities.length > 0 && (
       <section>
-        <h1>Ingredients</h1>
+        <h1 className="ingredients-title">Ingredients</h1>
         {arrayIngredientsAndQuantities
           .map((stringIngredientsAndQuantity, i) => (
             <div key={ i }>

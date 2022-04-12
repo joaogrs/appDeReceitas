@@ -89,23 +89,38 @@ function DrinkInProgress(props) {
 
   return (
     drinkInProgress.length > 0 && (
-      <section>
-        <div>
+      <section className="details">
+        <div className="containerDetails">
           <img
             width="30%"
             height="30%"
+            className="img_details"
             data-testid="recipe-photo"
             alt={ drinkInProgress[0].idDrink }
             src={ drinkInProgress[0].strDrinkThumb }
           />
-          <h1 data-testid="recipe-title">{drinkInProgress[0].strDrink}</h1>
-          <ShareButtonInProgressDrinks />
-          <FavoriteButtonInProgressDrinks />
+          <h1
+            data-testid="recipe-title"
+            className="title"
+          >
+            {drinkInProgress[0].strDrink}
+
+          </h1>
+          <div className="containerFavoriteAndShare">
+            <ShareButtonInProgressDrinks />
+            <FavoriteButtonInProgressDrinks />
+          </div>
           <span data-testid="recipe-category">{ drinkInProgress[0].strAlcoholic }</span>
           <IngredientsListInProgress
             dataDetails={ drinkInProgress[0] }
           />
-          <span data-testid="instructions">{ drinkInProgress[0].strInstructions }</span>
+          <span
+            data-testid="instructions"
+            className="desc-instructions"
+          >
+            { drinkInProgress[0].strInstructions }
+
+          </span>
           <button
             type="button"
             data-testid="finish-recipe-btn"
