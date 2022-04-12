@@ -8,6 +8,7 @@ import FavoriteButtonInProgressFoods from '../Components/FavoriteButtonInProgres
 import { getfavoriteFoodLocalStore } from '../Helpers/favoriteLocalStore';
 import { removeDoneRecipesLocalStorage } from '../Helpers/InProgressLocalStorage';
 import { setDoneRecipesLocalStorage } from '../Helpers/setDoneRecipesLocalStorage';
+// import '../styles/details.css';
 
 function RecipeInProgress(props) {
   const {
@@ -92,23 +93,38 @@ function RecipeInProgress(props) {
 
   return (
     recipeInProgress.length > 0 && (
-      <section>
-        <div>
+      <section className="details">
+        <div className="containerDetails">
           <img
             width="30%"
             height="30%"
             data-testid="recipe-photo"
+            className="img_details"
             alt={ recipeInProgress[0].idMeal }
             src={ recipeInProgress[0].strMealThumb }
           />
-          <h1 data-testid="recipe-title">{recipeInProgress[0].strMeal}</h1>
-          <ShareButtonInProgressFoods />
-          <FavoriteButtonInProgressFoods />
+          <h1
+            data-testid="recipe-title"
+            className="title"
+          >
+            {recipeInProgress[0].strMeal}
+
+          </h1>
+          <div className="containerFavoriteAndShare">
+            <ShareButtonInProgressFoods />
+            <FavoriteButtonInProgressFoods />
+          </div>
           <span data-testid="recipe-category">{ recipeInProgress[0].strCategory }</span>
           <IngredientsListInProgress
             dataDetails={ recipeInProgress[0] }
           />
-          <span data-testid="instructions">{ recipeInProgress[0].strInstructions }</span>
+          <span
+            data-testid="instructions"
+            className="desc-instructions"
+          >
+            { recipeInProgress[0].strInstructions }
+
+          </span>
           <button
             type="button"
             data-testid="finish-recipe-btn"
