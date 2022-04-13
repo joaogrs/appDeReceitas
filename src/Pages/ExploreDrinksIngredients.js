@@ -4,13 +4,13 @@ import Footer from '../Components/Footer';
 import myContext from '../Context/myContext';
 import Header from '../Components/Header';
 import { fetchApi } from '../Helpers/useFetch';
+import '../styles/explore_drinks_ingredients.css';
 
 function ExploreDrinksIngredients(props) {
   const [dataDrink, setDataDrinks] = useState();
   const { setShowSearchInput,
     setFilteredByIngredient, setIngredientSelect } = useContext(myContext);
   useEffect(() => {
-    // console.log('didMount');
     setShowSearchInput((prevState) => !prevState);
     const fetchDrinksIngredients = async () => {
       const ARRAY_LENGTH = 12;
@@ -28,28 +28,34 @@ function ExploreDrinksIngredients(props) {
   return (
     <section>
       <Header { ...props } pageTitle="Explore Ingredients" />
-      {dataDrink && dataDrink.map((objDrinkIngredient, i) => {
-        const onClickLink = () => {
-          setFilteredByIngredient(true);
-          setIngredientSelect(objDrinkIngredient.strIngredient1);
-        };
-        return (
-          <Link key={ i } to="/drinks" onClick={ onClickLink }>
-            <section key={ i } data-testid={ `${i}-ingredient-card` }>
-              <img
-                alt="imagem do ingrediente"
-                src={ `https://www.thecocktaildb.com/images/ingredients/${objDrinkIngredient.strIngredient1}-Small.png` }
-                data-testid={ `${i}-card-img` }
-              />
-              <h2
-                data-testid={ `${i}-card-name` }
+      <div className="card-ingredients">
+        {dataDrink && dataDrink.map((objDrinkIngredient, i) => {
+          const onClickLink = () => {
+            setFilteredByIngredient(true);
+            setIngredientSelect(objDrinkIngredient.strIngredient1);
+          };
+          return (
+            <Link key={ i } to="/drinks" onClick={ onClickLink }>
+              <section
+                key={ i }
+                data-testid={ `${i}-ingredient-card` }
+                className="ingredients"
               >
-                {objDrinkIngredient.strIngredient1}
+                <img
+                  alt="imagem do ingrediente"
+                  src={ `https://www.thecocktaildb.com/images/ingredients/${objDrinkIngredient.strIngredient1}-Small.png` }
+                  data-testid={ `${i}-card-img` }
+                />
+                <h4
+                  data-testid={ `${i}-card-name` }
+                >
+                  {objDrinkIngredient.strIngredient1}
 
-              </h2>
-            </section>
-          </Link>);
-      })}
+                </h4>
+              </section>
+            </Link>);
+        })}
+      </div>
       <Footer />
     </section>
   );

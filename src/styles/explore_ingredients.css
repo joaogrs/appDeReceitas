@@ -6,14 +6,6 @@
   width: 360px;
 }
 
-.ingredients {
-  /* display: grid;
-  margin-left: 10px;
-  grid-column-gap: 45px;
-  grid-template-columns: repeat(2, 40%);
-  width: 360px; */
-}
-
 .ingredients img{
   border: 3px solid #b4000f;
   height: 100px;

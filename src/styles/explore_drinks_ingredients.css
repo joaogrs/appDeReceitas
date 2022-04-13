@@ -1,0 +1,18 @@
+.card-ingredients {
+    display: grid;
+    margin-left: 50px;
+    grid-column-gap: 45px;
+    grid-template-columns: repeat(2, 30%);
+    width: 360px;
+  }
+  
+  .ingredients img{
+    border: 3px solid #b4000f;
+    height: 100px;
+    width: 100px;
+  }
+  
+  .ingredients h4 {
+      color: black;
+      font-size: 18px;
+    }
