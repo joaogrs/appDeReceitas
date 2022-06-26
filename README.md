@@ -2,7 +2,7 @@
 
 ## Sobre o projeto
 
-O objetivo desse projeto era desenvolver um aplicativo de receitas utilizando React e os conceitos de mobile first. Ele foi desenvolvido em um grupo de 4 pessoas e também pude colocar em prática os conceitos de metodologias ágeis aprendidos na Trybe. Para o gerenciamento do estado da aplicação foi utilizado Context API e Hooks. Também fixei aqui conceitos de consumo de `APIs`.
+O objetivo desse projeto era desenvolver um aplicativo de receitas utilizando `React` e os conceitos de `mobile first`. Ele foi desenvolvido em um grupo de 4 pessoas e também pude colocar em prática os conceitos de `metodologias ágeis` aprendidos na Trybe. Para o gerenciamento do estado da aplicação foi utilizado `Context API` e `Hooks`. Também fixei aqui conceitos de consumo de `APIs`.
 ---
 
 ## Instalação do projeto localmente
